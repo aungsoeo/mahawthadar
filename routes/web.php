@@ -15,7 +15,10 @@
 Route::group(['prefix' => 'admin'], function(){
 	Auth::routes();
 	Route::group(['middleware' => 'IsAdmin'], function(){
-		Route::get('/', 'HomeController@index')->name('Admin Home');
+		//Route::get('/', 'HomeController@index')->name('Admin Home');
+		Route::get('/', ['as' => 'admin.index', 'uses' => 'HomeController@index']);
+		
+		Route::get('/dosth', ['as' => 'admin.dosth', 'uses' => 'HomeController@dosth']);
 	});
 });
 /*******/

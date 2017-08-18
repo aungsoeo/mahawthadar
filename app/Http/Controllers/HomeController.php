@@ -25,4 +25,9 @@ class HomeController extends Controller
     {
         return view('home');
     }
+
+    public function dosth() // Edited by HeinHtetAung for admin_user_middleware
+    {
+        return "awesome";
+    }
 }
