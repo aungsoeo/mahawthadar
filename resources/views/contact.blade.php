@@ -3,6 +3,12 @@
 @section('styles')
 @parent
 <!-- your custom css here -->
+<style type="text/css">
+  .alert-danger{
+  display: block;
+  background: #eee;
+}
+</style>
 @endsection
 
 @section('content')
@@ -16,7 +22,17 @@
      <div id="content" class="three_quarter first"> 
      <div id="comments">
           <h2>Contact Form</h2>
-          <form action="#" method="post">
+          <!-- for valaditor -->
+          @if ( count( $errors ) > 0 )
+            <div class=" alert-danger">
+                @foreach ($errors->all() as $error)
+                    *{{ $error }}*<br>        
+                @endforeach
+            </div>
+          @endif
+          <form action="/contact" method="post">
+          {{csrf_field()}}
+
             <div>
               <label for="name">Name <span>*</span></label>
               <input type="text" name="name" id="name" value="" size="22">
