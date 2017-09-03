@@ -20,6 +20,11 @@ class CreatePostsTable extends Migration
             $table->integer('main_category_id');
             $table->integer('sub_category_id');
             $table->text('description');
+            $table->string('custom_field1');
+            $table->string('custom_field2');
+            $table->string('custom_field3');
+            $table->string('custom_field4');
+            $table->string('custom_field5');
             $table->timestamps();
         });
     }
