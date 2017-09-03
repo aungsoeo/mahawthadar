@@ -15,7 +15,7 @@
 
      <div id="content" class="three_quarter first"> 
      <div id="comments">
-          <h2>ေက်ာင္း၀င္ခြင့္ပုံစံ (Student Registration Form)</h2>
+          <h2>Contact Form</h2>
           <form action="#" method="post">
             <div>
               <label for="name">Name <span>*</span></label>
