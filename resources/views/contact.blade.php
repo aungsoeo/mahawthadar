@@ -8,6 +8,11 @@
   display: block;
   background: #eee;
 }
+.alert-success{
+  display: block;
+  background: #efefef;
+  color: green;
+}
 </style>
 @endsection
 
@@ -30,6 +35,12 @@
                 @endforeach
             </div>
           @endif
+          <!-- for success message -->
+              @if ($message = Session::get('success'))
+              <div class="alert alert-success">
+                  <p>{{ $message }}</p>
+              </div>
+             @endif
           <form action="/contact" method="post">
           {{csrf_field()}}
 

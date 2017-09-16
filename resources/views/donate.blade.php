@@ -21,6 +21,11 @@
   margin-left: 200px;
   background: #eee;
 }
+.alert-success{
+  display: block;
+  background: #efefef;
+  color: green;
+}
 </style>
 @endsection
 
@@ -42,6 +47,13 @@
                     *{{ $error }}*<br>        
                 @endforeach
             </div>
+          
+          @endif
+          <!-- for success message -->
+          @if ($message = Session::get('success'))
+              <div class="alert alert-success">
+                  <p>{{ $message }}</p>
+              </div>
           @endif
 
           <form action="/donation/donate" method="post" enctype="multipart/form-data">

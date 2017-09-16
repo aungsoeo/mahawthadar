@@ -8,6 +8,11 @@
   display: block;
   background: #eee;
 }
+.alert-success{
+  display: block;
+  background: #efefef;
+  color: green;
+}
 </style>
 @endsection
 
@@ -32,6 +37,13 @@
             </div>
           @endif
 
+          <!-- for success message -->
+              @if ($message = Session::get('success'))
+              <div class="alert alert-success">
+                  <p>{{ $message }}</p>
+              </div>
+             @endif
+
           <form action="/book" method="post">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">     
 
@@ -41,7 +53,7 @@
             </div>
             <div class="one_third">
               <label>အဖအမည္ (Father’s Name) <span>*</span></label>
-              <input type="text" value="" size="22" name="fname">
+              <input type="text" value="" size="22" name="father_name">
             </div>
             <div class="one_third">
               <label>အဖမွတ္ပုံတင္ (Father’s NRC) <span></span></label>
@@ -57,8 +69,9 @@
             </div>
             <div class="one_third">
               <label>ဆက္သြယ္ရမည့္ဖုန္းနံပါတ္ </label>
-              <input type="text" value="" size="22" name="contact_no">
+              <input type="text" value="" size="22" name="phone_no'">
             </div>
+
             <div class="one_third first">
               <label>Gender <span>*</span></label>
               <select width="300px" name="gender">
@@ -66,12 +79,16 @@
                 <option>Female</option>
               </select>
             </div>
+            <div class="one_third">
+              <label>Email <span>*</span> </label>
+              <input type="email" value="" size="22" name="email" required="required">
+            </div>
             <div class="block clear">
               <label for="comment">လိပ္စာ (Address) <span>*</span></label>
               <textarea  id="comment" cols="25" rows="10" name=" address"></textarea>
             </div>
             <div>
-              <input name="submit" type="submit" value="Submit Form">
+              <input name="" type="submit" value="Submit Form">
               &nbsp;
               <input name="reset" type="reset" value="Reset Form">
             </div>

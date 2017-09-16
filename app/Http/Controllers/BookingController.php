@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Validator;
+use App\Student;
+use App\Mail\Email;
+use Mail;
 
 class BookingController extends Controller
 {
@@ -19,14 +22,16 @@ class BookingController extends Controller
 
     	$rules = array(
 		        'name' => 'required',
-		        'fname'=>'required',                          
+		        'father_name'=>'required',                          
 		        'passed_school'=> 'required',
 		        'roll_no' => 'required',
+		        // 'email'=>'required|email|unique:student_registration_form',
 		        'gender'=>'required',
 		        'address'=>'required'        
 		    );
   
     	$validator = Validator::make($input, $rules);
+
     	
     	if ($validator->fails()) 
     	{
@@ -35,10 +40,22 @@ class BookingController extends Controller
 	            ->withErrors($validator);
 
 	    } else 
-	    {
-	        // validation successful ---------------------------
-	        dd($input);
+	    {	
+	    	// dd($request->all());
+	        $user = Student::create($request->all());
+
+	        \Mail::to($user)->send(new Email);
+
+            Mail::send('emails.bookingEmail', ['user' => $user], function ($m) use ($user) {
+		            $m->from($user->email, $user->name);
+		            $m->to('admin@admin.com', 'admin')
+		              ->subject('Receiving Mail From Visitor : ' . $user->name);
+		        });        
+	        return redirect()->back()->with('success','Student Registration Form created successfully');
+             
 
 	    }
     }
 }
+
+           
