@@ -11,7 +11,35 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <!-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> -->
+
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ asset('assets/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ asset('assets/css/font-awesome.min.css') }}">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ asset('assets/css/smartadmin-production-plugins.min.css') }}">
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ asset('assets/css/smartadmin-production.min.css') }}">
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ asset('assets/css/smartadmin-skins.min.css') }}">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ asset('assets/css/smartadmin-rtl.min.css') }}">
+
+    <link rel="stylesheet" type="text/css" media="screen" href="{{ asset('assets/css/demo.min.css') }}">
+
+    <link rel="shortcut icon" href="{{ asset('assets/img/myimg/JNBK_logo.png') }}" type="image/png">
+    <link rel="icon" href="{{ asset('assets/img/myimg/JNBK_logo.png.png') }}" type="image/png">
+
+    <script src="{{ asset('assets/jquery.min.js') }}"></script>
+    <style>
+    .navbar-default {
+        background-color: #9b0c15;
+        border-color: inherit;
+    }
+    .navbar-default a{
+        color:#D8D00D !important;
+    }
+    html, body{
+        background: #82050b;
+    }
+    </style>
 </head>
 <body>
     <div id="app">
@@ -42,6 +70,7 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
                         <!-- Authentication Links -->
+                        {{--
                         @if (Auth::guest())
                             <li><a href="{{ route('login') }}">Login</a></li>
                             <li><a href="{{ route('register') }}">Register</a></li>
@@ -66,6 +95,7 @@
                                 </ul>
                             </li>
                         @endif
+                        --}}
                     </ul>
                 </div>
             </div>

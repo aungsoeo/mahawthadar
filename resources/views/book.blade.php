@@ -44,7 +44,7 @@
               </div>
              @endif
 
-          <form action="/book" method="post">
+          <form action="{{ route('book.postbook') }}" method="post">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">     
 
             <div class="one_third first">            

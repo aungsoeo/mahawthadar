@@ -177,6 +177,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+        App\Providers\HelperServiceProvider::class, // Edited By HeinHtetAung for helper function call from view getCategories
     ],
 
     /*
@@ -225,6 +226,8 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+
+        'MyFuncs' => App\Helpers\MyFuncs::class, // Edited By HeinHtetAung for helper function call from view getCategories
 
     ],
 

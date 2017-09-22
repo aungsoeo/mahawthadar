@@ -14,11 +14,15 @@
 /*** Admin Panel ***/
 Route::group(['prefix' => 'admin'], function(){
 	Auth::routes();
-	Route::group(['middleware' => 'IsAdmin'], function(){
+	Route::group(['namespace' => 'Admin', 'middleware' => 'IsAdmin'], function(){
 		//Route::get('/', 'HomeController@index')->name('Admin Home');
-		Route::get('/', ['as' => 'admin.index', 'uses' => 'Admin/HomeController@index']);
+		Route::get('/', ['as' => 'admin.index', 'uses' => 'HomeController@index']);
+		
+		Route::get('/category', ['as' => 'admin.category', 'uses' => 'CategoryController@index']);
 
-		Route::get('/dosth', ['as' => 'admin.dosth', 'uses' => 'HomeController@dosth']);
+		Route::get('/category/create', ['as' => 'admin.category.create', 'uses' => 'CategoryController@create']);
+
+		Route::post('/category/create', ['as' => 'admin.category.store', 'uses' => 'CategoryController@store']);
 	});
 });
 /*******/
