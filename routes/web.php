@@ -17,7 +17,7 @@ Route::group(['prefix' => 'admin'], function(){
 	Route::group(['middleware' => 'IsAdmin'], function(){
 		//Route::get('/', 'HomeController@index')->name('Admin Home');
 		Route::get('/', ['as' => 'admin.index', 'uses' => 'Admin/HomeController@index']);
-		
+
 		Route::get('/dosth', ['as' => 'admin.dosth', 'uses' => 'HomeController@dosth']);
 	});
 });
@@ -27,13 +27,19 @@ Route::group(['prefix' => 'admin'], function(){
 
 Route::get('/', ['as' => 'user.index', 'uses' => 'HomeController@index']);
 
+// route for post book
 Route::get('/book', ['as' => 'book.index', 'uses' => 'BookingController@index']);
+Route::post('/book', ['as' => 'book.postbook', 'uses' => 'BookingController@postbook']);
+
 
 Route::get('/contact', ['as' => 'contact.index', 'uses' => 'ContactController@index']);
+Route::post('/contact', ['as' => 'contact.postcontact', 'uses' => 'ContactController@postContact']);
+
 
 Route::get('/donation', ['as' => 'donation.index', 'uses' => 'DonationController@index']);
-
 Route::get('/donation/donate', ['as' => 'donation.donate', 'uses' => 'DonationController@donate']);
+Route::post('/donation/donate', ['as' => 'donation.donate', 'uses' => 'DonationController@postdonate']);
+
 
 Route::get('/gallery', ['as' => 'gallery.index', 'uses' => 'GalleryController@index']);
 

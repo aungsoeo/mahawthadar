@@ -3,6 +3,17 @@
 @section('styles')
 @parent
 <!-- your custom css here -->
+<style type="text/css">
+  .alert-danger{
+  display: block;
+  background: #eee;
+}
+.alert-success{
+  display: block;
+  background: #efefef;
+  color: green;
+}
+</style>
 @endsection
 
 @section('content')
@@ -16,44 +27,68 @@
      <div id="content" class="three_quarter first"> 
      <div id="comments">
           <h2>ေက်ာင္း၀င္ခြင့္ပုံစံ (Student Registration Form)</h2>
-          <form action="#" method="post">
-            <div class="one_third first">
+
+          <!-- for valaditor -->
+          @if ( count( $errors ) > 0 )
+            <div class=" alert-danger">
+                @foreach ($errors->all() as $error)
+                    *{{ $error }}*<br>        
+                @endforeach
+            </div>
+          @endif
+
+          <!-- for success message -->
+              @if ($message = Session::get('success'))
+              <div class="alert alert-success">
+                  <p>{{ $message }}</p>
+              </div>
+             @endif
+
+          <form action="/book" method="post">
+            <input type="hidden" name="_token" value="{{ csrf_token() }}">     
+
+            <div class="one_third first">            
               <label>နာမည္ (Name) <span>*</span></label>
-              <input type="text" value="" size="22">
+              <input type="text" value="" size="22" name="name">
             </div>
             <div class="one_third">
               <label>အဖအမည္ (Father’s Name) <span>*</span></label>
-              <input type="text" value="" size="22">
+              <input type="text" value="" size="22" name="father_name">
             </div>
             <div class="one_third">
               <label>အဖမွတ္ပုံတင္ (Father’s NRC) <span></span></label>
-              <input type="text" value="" size="22">
+              <input type="text" value="" size="22" name="father_nrc">
             </div>
             <div class="one_third first">
               <label>၇တန္းေအာင္ခဲ့သည့္ေက်ာင္း <span>*</span></label>
-              <input type="text" value="" size="22">
+              <input type="text" value="" size="22" name="passed_school">
             </div>
             <div class="one_third">
               <label>ခုံနံပါတ္ <span>*</span></label>
-              <input type="text" value="" size="22">
+              <input type="text" value="" size="22" name="roll_no">
             </div>
             <div class="one_third">
               <label>ဆက္သြယ္ရမည့္ဖုန္းနံပါတ္ </label>
-              <input type="text" value="" size="22">
+              <input type="text" value="" size="22" name="phone_no'">
             </div>
+
             <div class="one_third first">
               <label>Gender <span>*</span></label>
-              <select width="300px">
+              <select width="300px" name="gender">
                 <option>Male</option>
                 <option>Female</option>
               </select>
             </div>
+            <div class="one_third">
+              <label>Email <span>*</span> </label>
+              <input type="email" value="" size="22" name="email" required="required">
+            </div>
             <div class="block clear">
               <label for="comment">လိပ္စာ (Address) <span>*</span></label>
-              <textarea name="comment" id="comment" cols="25" rows="10"></textarea>
+              <textarea  id="comment" cols="25" rows="10" name=" address"></textarea>
             </div>
             <div>
-              <input name="submit" type="submit" value="Submit Form">
+              <input name="" type="submit" value="Submit Form">
               &nbsp;
               <input name="reset" type="reset" value="Reset Form">
             </div>
