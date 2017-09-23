@@ -20,7 +20,9 @@ class StudentsTableSeeder extends Seeder
 	            'passed_school'=>'Mandalay',
 	            'roll_no' => '2',
 	            'phone_no'=>'0912345678',
-	            'gender'=>'male'
+	            'gender'=>'male',
+	            'email' => 'umya@gmail.com',
+	            'address' => '',
 	        ]
 
 	    ]);

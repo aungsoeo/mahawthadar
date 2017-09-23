@@ -29,39 +29,7 @@ class CategoryController extends Controller
     {
         $cat=Category::where('parent_id', '0')->orderBy('parent_id', 'asc')->get();
 
-        // foreach($cat as $c){
-        //   echo $c->title."<br>";
-        //   $sub=$c->Categories;
-            
-        //   $this->getCategory($sub, 1);            
-        // }
-
-        // echo "<br>";
-        // echo "<style> #left-panel{ position:relative !important } </style>";
-        //exit;
         return view('admin.category', array('cat' => $cat));
-    }
-
-    function getCategory($sub, $c){
-      $c++;
-      foreach($sub as $s){
-        $space="";
-        for($i=0; $i<$c; $i++){
-          $space=$space."&nbsp;&nbsp;";
-        }
-        echo $space." - ".$s->title."<br>";
-        if($this->hasCategory($s->Categories)){
-          $this->getCategory($s->Categories, $c);
-        }
-      }
-    }
-
-    function hasCategory($sub){
-      if(sizeof($sub)>0){
-        return true;
-      }else{
-        return false;
-      }
     }
 
     public function create()

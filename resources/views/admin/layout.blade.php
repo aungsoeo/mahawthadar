@@ -279,23 +279,21 @@
           <a href="{{ route('admin.category') }}" title="Category"><i class="fa fa-list-ul"></i> <span class="menu-item-parent">Category</span></a>
         </li>
         <li class="">
+          <a href="{{ route('admin.post') }}" title="Post"><i class="glyphicon glyphicon-pushpin"></i> <span class="menu-item-parent">Post</span></a>
+        </li>
+
+        <li class="">
+          <a href="contact" title="Contact"><i class="fa fa-support"></i> <span class="menu-item-parent">Contact</span></a>
+        </li>
+
+        <li class="">
+          <a href="student" title="Students"><i class="fa fa-user"></i> <span class="menu-item-parent">Students</span></a>
+        </li>
+
+        <li class="">
           <a href="user" title="User"><i class="fa fa-user"></i> <span class="menu-item-parent">User</span></a>
         </li> 
-        <li class="">
-          <a href="language" title="Language"><i class="fa fa-language"></i> <span class="menu-item-parent">Language</span></a>
-        </li>
-        <li class="">
-          <a href="supplier" title="Supplier"><i class="fa fa-support"></i> <span class="menu-item-parent">Supplier</span></a>
-        </li>
-        <li class="">
-          <a href="news" title="News"><i class="fa fa-info-circle"></i> <span class="menu-item-parent">News</span></a>
-        </li>
-        <li class="">
-          <a href="category" title="Category"><i class="fa fa-list-ul"></i> <span class="menu-item-parent">Category</span></a>
-        </li>
-        <li class="">
-          <a href="post" title="Post"><i class="glyphicon glyphicon-pushpin"></i> <span class="menu-item-parent">Post</span></a>
-        </li>
+        
       </ul>
     </nav>
     <span class="minifyme" data-action="minifyMenu"> 

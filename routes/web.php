@@ -23,6 +23,12 @@ Route::group(['prefix' => 'admin'], function(){
 		Route::get('/category/create', ['as' => 'admin.category.create', 'uses' => 'CategoryController@create']);
 
 		Route::post('/category/create', ['as' => 'admin.category.store', 'uses' => 'CategoryController@store']);
+
+		Route::get('/post', ['as' => 'admin.post', 'uses' => 'PostController@index']);
+
+		Route::get('/post/create', ['as' => 'admin.post.create', 'uses' => 'PostController@create']);
+
+		Route::post('/post/create', ['as' => 'admin.post.store', 'uses' => 'PostController@store']);
 	});
 });
 /*******/
