@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Model\Post;
 
 class NewsController extends Controller
 {
     //
     public function index()
-    {
-        return view('news');
+    {	
+    	$posts= Post::all();
+        return view('news',compact('posts'));
     }
 }

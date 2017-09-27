@@ -3,6 +3,13 @@
 @section('styles')
 @parent
 <!-- your custom css here -->
+<style type="text/css">
+.alert-success{
+  display: block;
+  background: #efefef;
+  color: green;
+}
+</style>
 @endsection
 
 @section('content')
@@ -23,6 +30,12 @@
 			<div class="col-md-6">
 								
 			</div>
+			 <!-- for success message -->
+            @if ($message = Session::get('success'))
+              <div class="alert alert-success">
+                  <p>{{ $message }}</p>
+              </div>
+             @endif
 			<table class="table table-striped table-bordered table-hover"> 
 				<thead>
 					<tr>
@@ -32,7 +45,16 @@
 					</tr>					
 				</thead>
 				<tbody>
-					
+					@foreach($posts as $post)			
+					<tr>
+						<td>{{$post->id}}</td>
+						<td>{{$post->title}}</td>
+						<td>
+							<input type="submit" class="btn btn-primary" onclick="window.location.href='{{ route('admin.post.edit',$post->id) }}'" value="Edit">
+							<input type="submit" class="btn btn-danger" onclick="window.location.href='{{ route('admin.post.delete',$post->id)}}'" value="Delete">
+						</td>
+					</tr>
+					@endforeach
 				</tbody>
 			</table>
 		</div>

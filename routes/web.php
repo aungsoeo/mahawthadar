@@ -29,6 +29,12 @@ Route::group(['prefix' => 'admin'], function(){
 		Route::get('/post/create', ['as' => 'admin.post.create', 'uses' => 'PostController@create']);
 
 		Route::post('/post/create', ['as' => 'admin.post.store', 'uses' => 'PostController@store']);
+		// add route for post update by ASO
+		Route::get('/post/{id}/edit', ['as' => 'admin.post.edit', 'uses' => 'PostController@edit']);
+
+		Route::post('/post/update', ['as' => 'admin.post.update', 'uses' => 'PostController@update']);
+
+		Route::get('/post/{id}/delete', ['as' => 'admin.post.delete', 'uses' => 'PostController@delete']);
 	});
 });
 /*******/

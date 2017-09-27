@@ -29,8 +29,10 @@ class PostController extends Controller
     public function index()
     {
         //$cat=Category::where('parent_id', '0')->orderBy('parent_id', 'asc')->get();
-        $data = array();
-        return view('admin.post', $data);
+        // $data = array();
+        $posts= Post::all();
+
+        return view('admin.post',['posts'=>$posts]);
     }
 
     public function create()
@@ -103,5 +105,26 @@ class PostController extends Controller
         $res=Post::create($arr);
 
         return redirect()->route('admin.post');
+    }
+
+    //update post by ASO
+    public function edit($id)
+    {   
+        $posts = Post::find($id);
+        $cat = Category::where('parent_id', '0')->orderBy('parent_id', 'asc')->get();
+        $subcat = Category::where('parent_id','!=', '0')->orderBy('parent_id', 'asc')->get();
+        return view('admin.post_edit',compact('posts','cat','subcat'));
+    }
+
+    //store update post
+    public function update()
+    {
+
+    }
+    //delete  post
+    public function delete($id)
+    {
+      $post = Post::find($id)->delete();
+      return redirect()->back()->with('success','Post is successfully deleted!');
     }
 }
