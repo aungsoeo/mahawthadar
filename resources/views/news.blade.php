@@ -13,6 +13,7 @@
     <main class="container clear"> 
 
      <div id="content" class="three_quarter first"> 
+      <div id="comments">
      <h2>Latest News &amp; Events</h2>
           <ul class="nospace listing">
             @foreach($posts as $post)
@@ -29,9 +30,8 @@
             </li>
             @endforeach
           </ul>    
-            
+      </div>
     </div>  
-    {{$posts->render()}}
   <!-- ################################################################################################ -->  
     <div class="one_quarter sidebar"> 
     <h6>Campus Life</h6>
@@ -45,23 +45,12 @@
           </ul>
         </nav>
     </div>
-
-      <!-- ################################################################################################ -->
-      <!-- <nav class="pagination">
-        <ul>
-            
-            
-
-        </ul>
-      </nav> -->
-      <!-- ################################################################################################ --> 
-      <!-- / main body -->
       <div class="clear"></div>
     </main>
   </div>
 </div> 
+{{$posts->render()}}
 <!-- ################################################################################################ -->
-
 @endsection
 
 @section('scripts')

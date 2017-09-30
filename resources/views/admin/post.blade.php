@@ -25,7 +25,17 @@
 
 		<div class="row">
 			<div class="form-group col-md-3">
-				<input type="text" class="form-control" placeholder="Search">				
+				<form action="{{ route('admin.post.search') }}" method="POST" role="form">
+				    {{ csrf_field() }}
+				    <div class="input-group">
+				        <input type="text" class="form-control" name="search"
+				            placeholder="Search users"> <span class="input-group-btn">
+				            <button type="submit" class="btn btn-default">
+				                <span class="glyphicon glyphicon-search"></span>
+				            </button>
+				        </span>
+				    </div>
+				</form>			
 			</div>
 			<div class="col-md-6">
 								
@@ -63,7 +73,7 @@
 		
 	</div>
 </div>
-
+{{$posts->render()}}
 @endsection
 
 @section('scripts')

@@ -37,6 +37,8 @@ Route::group(['prefix' => 'admin'], function(){
 		Route::get('/post/{id}/show', ['as' => 'admin.post.show', 'uses' => 'PostController@show']);
 
 		Route::get('/post/{id}/delete', ['as' => 'admin.post.delete', 'uses' => 'PostController@delete']);
+
+		Route::post('/post/search',array('as'=>'admin.post.search','uses'=>'PostController@search'));
 	});
 });
 /*******/

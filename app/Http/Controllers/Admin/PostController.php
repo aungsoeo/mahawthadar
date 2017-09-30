@@ -28,12 +28,9 @@ class PostController extends Controller
      */
     public function index()
     {
-        //$cat=Category::where('parent_id', '0')->orderBy('parent_id', 'asc')->get();
-        // $data = array();
-        $posts= Post::all();
-
+        $posts= Post::paginate(10);
         return view('admin.post',['posts'=>$posts]);
-    }
+     }  
 
     public function create()
     {
@@ -195,4 +192,23 @@ class PostController extends Controller
       $post = Post::find($id)->delete();
       return redirect()->back()->with('success','Post is successfully deleted!');
     }
+
+    public function search(Request $request)
+
+    {   
+        $input = $request->all();
+        if($request->get('search')){
+
+            $posts = Post::where("title", "LIKE", "%{$request->get('search')}%")
+
+                ->paginate(10);      
+
+        }else{
+
+           $posts= Post::paginate(10);
+
+        }
+
+        return view('admin.post',['posts'=>$posts]);
+     } 
 }
