@@ -29,7 +29,8 @@
 				    {{ csrf_field() }}
 				    <div class="input-group">
 				        <input type="text" class="form-control" name="search"
-				            placeholder="Search users"> <span class="input-group-btn">
+				            placeholder="Search users" value="<?php if(isset($_POST['search'])){ echo $_POST['search']; } ?>"> 
+				            <span class="input-group-btn">
 				            <button type="submit" class="btn btn-default">
 				                <span class="glyphicon glyphicon-search"></span>
 				            </button>
