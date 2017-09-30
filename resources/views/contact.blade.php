@@ -107,4 +107,8 @@
 @section('scripts')
 @parent
 <!-- your custom script here -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script>
+  $('.alert-success').fadeIn().delay(5000).fadeOut();
+</script>
 @endsection
