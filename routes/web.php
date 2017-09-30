@@ -32,7 +32,9 @@ Route::group(['prefix' => 'admin'], function(){
 		// add route for post update by ASO
 		Route::get('/post/{id}/edit', ['as' => 'admin.post.edit', 'uses' => 'PostController@edit']);
 
-		Route::post('/post/update', ['as' => 'admin.post.update', 'uses' => 'PostController@update']);
+		Route::post('/post/{id}/update', ['as' => 'admin.post.update', 'uses' => 'PostController@update']);
+
+		Route::get('/post/{id}/show', ['as' => 'admin.post.show', 'uses' => 'PostController@show']);
 
 		Route::get('/post/{id}/delete', ['as' => 'admin.post.delete', 'uses' => 'PostController@delete']);
 	});
@@ -55,13 +57,19 @@ Route::post('/contact', ['as' => 'contact.postcontact', 'uses' => 'ContactContro
 Route::get('/donation', ['as' => 'donation.index', 'uses' => 'DonationController@index']);
 Route::get('/donation/donate', ['as' => 'donation.donate', 'uses' => 'DonationController@donate']);
 Route::post('/donation/donate', ['as' => 'donation.donate', 'uses' => 'DonationController@postdonate']);
+Route::get('/donation/show/{id}', ['as' => 'donation.show', 'uses' => 'DonationController@show']);
+
 
 
 Route::get('/gallery', ['as' => 'gallery.index', 'uses' => 'GalleryController@index']);
 
 Route::get('/history', ['as' => 'history.index', 'uses' => 'HistoryController@index']);
+//show post by id
+Route::get('/history/{id}/show', ['as' => 'history.show', 'uses' => 'HistoryController@show']);
 
 Route::get('/news', ['as' => 'news.index', 'uses' => 'NewsController@index']);
+//show post added by ASO
+Route::get('/news/{id}/show', ['as' => 'news.show', 'uses' => 'NewsController@show']);
 
 Route::get('/staff/teacher', ['as' => 'staff.teacher', 'uses' => 'StaffController@index']);
 

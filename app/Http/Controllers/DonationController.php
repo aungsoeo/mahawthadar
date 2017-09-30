@@ -6,13 +6,15 @@ use Illuminate\Http\Request;
 use Validator;
 use Mail;
 use App\Mail\DonateEmail;
+use App\Model\Post;
 
 class DonationController extends Controller
 {
     //
     public function index()
-    {
-        return view('donation');
+    {   
+        $posts= Post::where('main_category_id',9)->paginate(3);
+        return view('donation',compact('posts'));
     }
 
     public function donate()
@@ -48,22 +50,59 @@ class DonationController extends Controller
             $donator_name = $request->get('donator_name');
             $donation_title=$request->get('donation_title');
             $address    = $request->get('address');
-            $phone = $request->get('phone');
+            $phone = $request->get('phone_no');
             $detail = $request->get('detail');
             $photo = $request->get('photo');
             $date = $request->get('date');
 
-            \Mail::to($email)->send(new DonateEmail);
+            $structure= "upload/posts/";
+            $photo="";
+            if($request->file('photo')!=NULL){
 
-            Mail::send('emails.donateEmailAdmin', ['email' => $email, 'donator_name'=>$donator_name, 'donation_title'=>$donation_title, 'address'=> $address, 'phone'=>$phone, 'detail'=>$detail, 'photo'=>$photo, 'date'=>$date], function ($m) use ($email,$donator_name,$donation_title,$address,$phone,$detail,$photo,$date) {
-                    $m->from($email, $donator_name);
-                    $m->to('admin@admin.com', 'admin')
-                      ->subject('Receiving Mail From Donator : ' . $donator_name);
-                });
+              $file = $request->file('photo');
+              
+              if($file->getClientOriginalExtension()=="jpg" || $file->getClientOriginalExtension()=="jpeg" || $file->getClientOriginalExtension()=="JPG" || $file->getClientOriginalExtension()=="png" || $file->getClientOriginalExtension()=="PNG" || $file->getClientOriginalExtension()=="gif" || $file->getClientOriginalExtension()=="GIF"){
+                
+                $photo = $file->getClientOriginalName();
+                $file->move($structure, $photo);
+              }
+            }
+
+            $arr=[
+                'title' => $request->get('donation_title'),
+                'feature_photo' => $photo,
+                'main_category_id' =>9,
+                'sub_category_id'=>10,
+                'short_description'=>'',
+                'detail_photo'=>'',
+                'detail_description' => $request->get('detail'),
+                'custom_field1' => $request->get('donator_name'),
+                'custom_field2' => $request->get('email'),
+                'custom_field3' => $request->get('address'),
+                'custom_field4' => $request->get('phone_no'),
+                'custom_field5' => $request->get('date'),
+            ];
+
+            // dd($arr);
+            $res=Post::create($arr);
+
+            //tempory commit out
+            // \Mail::to($email)->send(new DonateEmail); 
+
+            // Mail::send('emails.donateEmailAdmin', ['email' => $email, 'donator_name'=>$donator_name, 'donation_title'=>$donation_title, 'address'=> $address, 'phone'=>$phone, 'detail'=>$detail, 'photo'=>$photo, 'date'=>$date], function ($m) use ($email,$donator_name,$donation_title,$address,$phone,$detail,$photo,$date) {
+            //         $m->from($email, $donator_name);
+            //         $m->to('admin@admin.com', 'admin')
+            //           ->subject('Receiving Mail From Donator : ' . $donator_name);
+            //     });
 
 	    }
         return redirect()->back()->with('success','Thanks for donation!');
 	}    
 
+    public function show($id)
+    {
+        $post = Post::findOrFail($id);
+        return view('show_post',compact('post'));
+    }
 
 }

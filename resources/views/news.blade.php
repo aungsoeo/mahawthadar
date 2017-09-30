@@ -17,14 +17,21 @@
           <ul class="nospace listing">
             @foreach($posts as $post)
             <li class="clear">
-              <div class="imgl borderedbox"><img src="{{ asset('upload/posts/' . $post->feature_photo) }}" alt="" style="width: 120px; height: 120px;"></div>
-              <p class="nospace btmspace-15"><a href="#">{{$post->title}}</a></p>
+              <div class="imgl borderedbox">
+                <a href="{{ route('news.show',$post->id) }}">
+                  <img src="{{ asset('upload/posts/' . $post->feature_photo) }}" alt="" style="width: 120px; height: 120px;">
+                </a>
+              </div>
+              <p class="nospace btmspace-15"><a href="{{ route('news.show',$post->id) }}">{{$post->title}}</a><br>
+               <small>Post on:&nbsp; {{$post->created_at->toFormattedDateString()}}</small>
+               </p>
               <p>{{$post->short_description}}</p>
             </li>
             @endforeach
-          </ul>
-      
+          </ul>    
+            
     </div>  
+    {{$posts->render()}}
   <!-- ################################################################################################ -->  
     <div class="one_quarter sidebar"> 
     <h6>Campus Life</h6>
@@ -38,21 +45,13 @@
           </ul>
         </nav>
     </div>
+
       <!-- ################################################################################################ -->
       <!-- <nav class="pagination">
         <ul>
-          <li><a href="#">&laquo; Previous</a></li>
-          <li><a href="#">1</a></li>
-          <li><a href="#">2</a></li>
-          <li><strong>&hellip;</strong></li>
-          <li><a href="#">6</a></li>
-          <li class="current"><strong>7</strong></li>
-          <li><a href="#">8</a></li>
-          <li><a href="#">9</a></li>
-          <li><strong>&hellip;</strong></li>
-          <li><a href="#">14</a></li>
-          <li><a href="#">15</a></li>
-          <li><a href="#">Next &raquo;</a></li>
+            
+            
+
         </ul>
       </nav> -->
       <!-- ################################################################################################ --> 
@@ -62,6 +61,7 @@
   </div>
 </div> 
 <!-- ################################################################################################ -->
+
 @endsection
 
 @section('scripts')

@@ -16,76 +16,29 @@
       <div id="comments">
         <h2>အလွဴရွင္မ်ားစာရင္း</h2>
           <ul>
+            @foreach($posts as $post)
             <li>
               <article>
                 <header>
-                  <figure class="avatar"><img src="images/demo/avatar.png" alt=""></figure>
+                  <figure class="avatar">
+                    <a href="{{ route('donation.show',$post->id) }}">  
+                      <img src="{{ asset('upload/posts/' . $post->feature_photo) }}" alt="donor_photo" style="width: 120px; height: 120px;">
+                    </a>  
+                  </figure>
                   <address>
-                  By <a href="#">A Name</a>
+                  By <a href="#">ASO</a> <br>
+                  <a href="{{ route('donation.show',$post->id) }}">{{$post->title}}</a>
                   </address>
-                  <time datetime="2045-04-06T08:15+00:00">Friday, 6<sup>th</sup> April 2045 @08:15:00</time>
+                  <time datetime="2045-04-06T08:15+00:00">{{$post->created_at->toFormattedDateString()}}</time>
                 </header>
                 <div class="comcont">
-                  <p>This is an example of a comment made on a post. You can either edit the comment, delete the comment or reply to the comment. Use this as a place to respond to the post or to share what you are thinking.</p>
+                  <p>{{$post->short_description}}</p>
                 </div>
               </article>
             </li>
-            <li>
-              <article>
-                <header>
-                  <figure class="avatar"><img src="images/demo/avatar.png" alt=""></figure>
-                  <address>
-                  By <a href="#">A Name</a>
-                  </address>
-                  <time datetime="2045-04-06T08:15+00:00">Friday, 6<sup>th</sup> April 2045 @08:15:00</time>
-                </header>
-                <div class="comcont">
-                  <p>This is an example of a comment made on a post. You can either edit the comment, delete the comment or reply to the comment. Use this as a place to respond to the post or to share what you are thinking.</p>
-                </div>
-              </article>
-            </li>
-            <li>
-              <article>
-                <header>
-                  <figure class="avatar"><img src="images/demo/avatar.png" alt=""></figure>
-                  <address>
-                  By <a href="#">A Name</a>
-                  </address>
-                  <time datetime="2045-04-06T08:15+00:00">Friday, 6<sup>th</sup> April 2045 @08:15:00</time>
-                </header>
-                <div class="comcont">
-                  <p>This is an example of a comment made on a post. You can either edit the comment, delete the comment or reply to the comment. Use this as a place to respond to the post or to share what you are thinking.</p>
-                </div>
-              </article>
-            </li>
-            <li>
-              <article>
-                <header>
-                  <figure class="avatar"><img src="images/demo/avatar.png" alt=""></figure>
-                  <address>
-                  By <a href="#">A Name</a>
-                  </address>
-                  <time datetime="2045-04-06T08:15+00:00">Friday, 6<sup>th</sup> April 2045 @08:15:00</time>
-                </header>
-                <div class="comcont">
-                  <p>This is an example of a comment made on a post. You can either edit the comment, delete the comment or reply to the comment. Use this as a place to respond to the post or to share what you are thinking.</p>
-                </div>
-              </article>
-            </li>
-            <li>
-              <article>
-                <header>
-                  <figure class="avatar"><img src="images/demo/avatar.png" alt=""></figure>
-                  <address>
-                  By <a href="#">A Name</a>
-                  </address>
-                  <time datetime="2045-04-06T08:15+00:00">Friday, 6<sup>th</sup> April 2045 @08:15:00</time>
-                </header>
-                <div class="comcont">
-                  <p>This is an example of a comment made on a post. You can either edit the comment, delete the comment or reply to the comment. Use this as a place to respond to the post or to share what you are thinking.</p>
-                </div>
-              </article>
-            </li>
+            <br>
+            <hr>
+            @endforeach
           </ul>
       </div>
     </div>  
@@ -102,29 +55,11 @@
           </ul>
         </nav>
     </div>
-      <!-- ################################################################################################ -->
-      <!-- <nav class="pagination">
-        <ul>
-          <li><a href="#">&laquo; Previous</a></li>
-          <li><a href="#">1</a></li>
-          <li><a href="#">2</a></li>
-          <li><strong>&hellip;</strong></li>
-          <li><a href="#">6</a></li>
-          <li class="current"><strong>7</strong></li>
-          <li><a href="#">8</a></li>
-          <li><a href="#">9</a></li>
-          <li><strong>&hellip;</strong></li>
-          <li><a href="#">14</a></li>
-          <li><a href="#">15</a></li>
-          <li><a href="#">Next &raquo;</a></li>
-        </ul>
-      </nav> -->
-      <!-- ################################################################################################ --> 
-      <!-- / main body -->
       <div class="clear"></div>
     </main>
   </div>
 </div> 
+{{$posts->render()}}
 <!-- ################################################################################################ -->
 @endsection
 

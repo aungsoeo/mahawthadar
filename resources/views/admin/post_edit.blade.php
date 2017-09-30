@@ -15,7 +15,7 @@
 			</div>	
 		</div>
 		<div class="row">
-			<form class="form-horizontal" enctype="multipart/form-data" role="form" method="POST" action="{{ route('admin.post.store') }}">
+			<form class="form-horizontal" enctype="multipart/form-data" role="form" method="POST" action="{{ route('admin.post.update',$posts->id) }}">
                 {!! csrf_field() !!}
 				<div class="form-group{{ $errors->has('title') ? ' has-error' : '' }}">
                     <label class="col-md-2 control-label">Post Title</label>

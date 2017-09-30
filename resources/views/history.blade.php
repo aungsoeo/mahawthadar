@@ -13,10 +13,22 @@
     <main class="container clear"> 
 
      <div id="content" class="three_quarter first"> 
-      <h2>မေဟာ္သဓာ ကိုယ္ပုိင္အထက္တန္းေက်ာင္း</h2>
-      <div class="imgholder"><img src="images/demo/10.jpeg" alt="" /></div><br>
-      <p>This is a W3C compliant free website template from <a href="http://www.os-templates.com/" title="Free Website Templates">OS Templates</a>. This template is distributed using a <a href="http://www.os-templates.com/template-terms">Website Template Licence</a>.</p>
-      <p>You can use and modify the template for both personal and commercial use. You must keep all copyright information and credit links in the template and associated files. For more CSS templates visit <a href="http://www.os-templates.com/">Free Website Templates</a>.</p>
+      <ul class="nospace listing">
+        @foreach($posts as $post)
+        <li class="clear">
+          <div class="imgl borderedbox">
+            <a href="{{ route('history.show',$post->id) }}">
+              <img src="{{ asset('upload/posts/' . $post->feature_photo) }}" alt="" style="width: 120px; height: 120px;">
+            </a>
+          </div>
+          <a href="{{ route('history.show',$post->id) }}">{{$post->title}}</a>
+          <br>
+          <time datetime="2045-04-06T08:15+00:00">{{$post->created_at->toFormattedDateString()}}</time><br><br>
+          <p>{{$post->short_description}}</p>
+        </li>
+        @endforeach
+      </ul> 
+      {{$posts->render()}} 
       
     </div>  
   <!-- ################################################################################################ -->

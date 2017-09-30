@@ -3,12 +3,21 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Model\Post;
 
 class HistoryController extends Controller
 {
-    //
+    //show all post in history
     public function index()
+    {	
+    	$posts= Post::where('main_category_id',1)->paginate(3);
+        return view('history',compact('posts'));
+    }
+
+    // show post in history by id
+    public function show($id)
     {
-        return view('history');
+    	$post = Post::findOrFail($id);
+    	return view('show_post',compact('post'));
     }
 }

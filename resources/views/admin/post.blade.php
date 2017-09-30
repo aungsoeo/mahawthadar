@@ -48,7 +48,9 @@
 					@foreach($posts as $post)			
 					<tr>
 						<td>{{$post->id}}</td>
-						<td>{{$post->title}}</td>
+						<td>
+							<a href="{{ route('admin.post.show',$post->id) }}">{{$post->title}}</a>
+						</td>
 						<td>
 							<input type="submit" class="btn btn-primary" onclick="window.location.href='{{ route('admin.post.edit',$post->id) }}'" value="Edit">
 							<input type="submit" class="btn btn-danger" onclick="window.location.href='{{ route('admin.post.delete',$post->id)}}'" value="Delete">
