@@ -17,7 +17,10 @@
         <figure>
           <h2>Latest Images From The University</h2>
           <ul class="nospace clear">
-            <li class="one_quarter first"><a class="nlb" data-lightbox-gallery="gallery1" href="images/demo/gallery/1.jpeg" title="Display Text 1"><img class="borderedbox" src="images/demo/gallery/1.jpeg" alt=""></a></li>
+            @foreach($posts as $post)
+            <li class="one_quarter"><a class="nlb" data-lightbox-gallery="gallery1" href="{{ asset('upload/posts/'.$post->feature_photo) }}" title="Display Text 4"><img class="borderedbox" src="{{ asset('upload/posts/'.$post->feature_photo) }}" alt=""></a></li>
+            @endforeach
+            <!-- <li class="one_quarter first"><a class="nlb" data-lightbox-gallery="gallery1" href="images/demo/gallery/1.jpeg" title="Display Text 1"><img class="borderedbox" src="images/demo/gallery/1.jpeg" alt=""></a></li>
             <li class="one_quarter"><a class="nlb" data-lightbox-gallery="gallery1" href="../images/demo/gallery/2.png" title="Display Text 2"><img class="borderedbox" src="images/demo/gallery/2.jpeg" alt=""></a></li>
             <li class="one_quarter"><a class="nlb" data-lightbox-gallery="gallery1" href="../images/demo/gallery/3.png" title="Display Text 3"><img class="borderedbox" src="images/demo/gallery/3.jpeg" alt=""></a></li>
             <li class="one_quarter"><a class="nlb" data-lightbox-gallery="gallery1" href="../images/demo/gallery/4.png" title="Display Text 4"><img class="borderedbox" src="images/demo/gallery/4.jpeg" alt=""></a></li>
@@ -35,7 +38,7 @@
             <li class="one_quarter first"><a class="nlb" data-lightbox-gallery="gallery1" href="images/demo/gallery/1.jpeg" title="Display Text 1"><img class="borderedbox" src="images/demo/gallery/13.jpeg" alt=""></a></li>
             <li class="one_quarter"><a class="nlb" data-lightbox-gallery="gallery1" href="../images/demo/gallery/2.png" title="Display Text 2"><img class="borderedbox" src="images/demo/gallery/14.jpeg" alt=""></a></li>
             <li class="one_quarter"><a class="nlb" data-lightbox-gallery="gallery1" href="../images/demo/gallery/3.png" title="Display Text 3"><img class="borderedbox" src="images/demo/gallery/15.jpeg" alt=""></a></li>
-            <li class="one_quarter"><a class="nlb" data-lightbox-gallery="gallery1" href="../images/demo/gallery/4.png" title="Display Text 4"><img class="borderedbox" src="images/demo/gallery/16.jpeg" alt=""></a></li>
+            <li class="one_quarter"><a class="nlb" data-lightbox-gallery="gallery1" href="../images/demo/gallery/4.png" title="Display Text 4"><img class="borderedbox" src="images/demo/gallery/16.jpeg" alt=""></a></li> -->
             
           </ul>
        </figure>

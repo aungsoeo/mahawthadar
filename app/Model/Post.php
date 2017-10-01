@@ -16,6 +16,6 @@ class Post extends Model
 	}
 
 	public function SubCategory(){
-		return $this->belongsTo('App\Model\sub_category_id', 'main_category_id');
+		return $this->belongsTo('App\Model\Category', 'sub_category_id');
 	}
 }

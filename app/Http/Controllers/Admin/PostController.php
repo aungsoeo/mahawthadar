@@ -28,9 +28,19 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts= Post::paginate(10);
-        return view('admin.post',['posts'=>$posts]);
-     }  
+        $cat = Category::where('parent_id','=', '0')->pluck('title', 'id');
+        $posts= Post::orderby('updated_at', 'desc')->paginate(10);
+        return view('admin.post',['posts'=>$posts, 'cat'=>$cat, 'subcat'=>array()]);
+    }  
+
+    public function getsub(Request $r)
+    {
+        $main_category_id = $r->parent_id;
+        $subcat = Category::where('parent_id','=', $main_category_id)->get();
+        foreach ($subcat as $s) {
+            echo "<option value='".$s->id."'>".$s->title."</option>";
+        }
+    }
 
     public function create()
     {
@@ -92,11 +102,11 @@ class PostController extends Controller
                 'feature_photo' => $feature_photo,
                 'detail_description' => $request->detail_description,
                 'detail_photo' => $detail_photo,
-                'custom_field1' => $request->custom_field1,
-                'custom_field2' => $request->custom_field2,
-                'custom_field3' => $request->custom_field3,
-                'custom_field4' => $request->custom_field4,
-                'custom_field5' => $request->custom_field5,
+                'custom_field1' => ($request->custom_field1)? $request->custom_field1 : '', // for_ASO
+                'custom_field2' => ($request->custom_field2)? $request->custom_field2 : '',
+                'custom_field3' => ($request->custom_field3)? $request->custom_field3 : '',
+                'custom_field4' => ($request->custom_field4)? $request->custom_field4 : '',
+                'custom_field5' => ($request->custom_field5)? $request->custom_field5 : '',
             ];
         
         $res=Post::create($arr);
@@ -168,11 +178,11 @@ class PostController extends Controller
                 'feature_photo' => $feature_photo,
                 'detail_description' => $request->detail_description,
                 'detail_photo' => $detail_photo,
-                'custom_field1' => $request->custom_field1,
-                'custom_field2' => $request->custom_field2,
-                'custom_field3' => $request->custom_field3,
-                'custom_field4' => $request->custom_field4,
-                'custom_field5' => $request->custom_field5,
+                'custom_field1' => ($request->custom_field1)? $request->custom_field1 : '',
+                'custom_field2' => ($request->custom_field2)? $request->custom_field2 : '',
+                'custom_field3' => ($request->custom_field3)? $request->custom_field3 : '',
+                'custom_field4' => ($request->custom_field4)? $request->custom_field4 : '',
+                'custom_field5' => ($request->custom_field5)? $request->custom_field5 : '',
             ];
         $post = Post::findOrFail($id);
         // $input = $request->all();
@@ -194,21 +204,30 @@ class PostController extends Controller
     }
 
     public function search(Request $request)
-
     {   
         $input = $request->all();
+        $posts = new Post(); // for_ASO to check fixes this is more better in filter
+        
+        $subcat = array();
+
         if($request->get('search')){
+            $posts = $posts->where("title", "LIKE", "%{$request->get('search')}%");
+        }
 
-            $posts = Post::where("title", "LIKE", "%{$request->get('search')}%")
+        if($request->get('category_id')){
+            $posts = $posts->where("main_category_id", "=", $request->get('category_id'));
+            $subcat = Category::where('parent_id','=', $request->get('category_id'))->get();
+        }
+        
+        if($request->get('sub_category_id')){
+            $posts = $posts->where("sub_category_id", "=", $request->get('sub_category_id'));
+        }
 
-                ->paginate(10);      
+        $sub_category_id = ($request->get('sub_category_id'))? $sub_category_id = $request->get('sub_category_id') : '';
 
-        }else{
-
-           $posts= Post::paginate(10);
-
-         }
-
-        return view('admin.post',compact('posts'));
+        $posts = $posts->orderby('updated_at', 'desc');
+        $posts = $posts->paginate(10);
+        $cat = Category::where('parent_id','=', '0')->pluck('title', 'id');
+        return view('admin.post', ['posts'=>$posts, 'cat'=>$cat, 'subcat' => $subcat, 'sub_category_id' => $sub_category_id]);
      } 
 }

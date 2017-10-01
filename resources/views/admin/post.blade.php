@@ -13,7 +13,10 @@
 @endsection
 
 @section('content')
-
+<?php
+$category_id = (isset($_GET['category_id']))? $_GET['category_id'] : '';
+$sub_category_id = (isset($_GET['sub_category_id']))? $_GET['sub_category_id'] : '';
+?>
 <div id="content" class="bodylayout"><!-- second common-->
 	<div class="well">
 		<div class="row">
@@ -24,20 +27,35 @@
 
 
 		<div class="row">
-			<div class="form-group col-md-3">
-				<form action="{{ route('admin.post.search') }}" method="POST" role="form">
-				    {{ csrf_field() }}
+			<form action="{{ route('admin.post.search') }}" method="GET" role="form">
+				<div class="form-group col-md-3">
 				    <div class="input-group">
 				        <input type="text" class="form-control" name="search"
-				            placeholder="Search.." value="<?php if(isset($_POST['search'])){ echo $_POST['search']; } ?>"> 
-				            <span class="input-group-btn">
-				            <button type="submit" class="btn btn-default">
-				                <span class="glyphicon glyphicon-search"></span>
-				            </button>
+				            placeholder="Search" value="{{ (isset($_GET['search']))? $_GET['search'] : '' }}"> 
 				        </span>
 				    </div>
-				</form>			
-			</div>
+				</div>
+				<div class="form-group col-md-3">
+			    	<select id="ctr_parent_id" class="form-control" name="category_id">
+                        <option value="">Select Category</option>
+                        @foreach($cat as $key=>$value)
+                            <option {{ ($category_id==$key) ? 'selected' : '' }} value="{{ $key }}">{{ $value }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="form-group col-md-3">
+                	<select id="ctr_sub_id" class="form-control" name="sub_category_id">
+                        <option value="">Select Sub Category</option>
+                        @foreach($subcat as $sc)
+                            <option {{ (isset($sub_category_id))? ($sub_category_id==$sc->id)? 'selected' : '' : '' }} value="{{ $sc->id }}">{{ $sc->title }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="form-group col-md-3">
+                	<input type="submit" value="Search" name="Search" class="btn btn-success"> 
+                </div>
+			</form>			
+			
 			<div class="col-md-6">
 								
 			</div>
@@ -73,11 +91,20 @@
 		</div>
 		
 	</div>
+
+	@if(!isset($_GET['search']))
+		{!! $posts->render() !!}
+	@else
+		{!! $posts->appends(['search' => $_GET['search'], 'category_id' => $category_id, 'sub_category_id' => $sub_category_id])->render() !!}
+	@endif
+
+	<input type="hidden" id="ctr_tocken" value="{{ csrf_token() }}" /> 
 </div>
-{{$posts->render()}}
 @endsection
 
 @section('scripts')
 @parent
-<!-- your custom script here -->
+
+<script type="text/javascript" src="{{ asset('js/getsubfrommain.js') }}"></script>
+
 @endsection

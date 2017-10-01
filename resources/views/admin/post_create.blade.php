@@ -35,7 +35,7 @@
                     <label class="col-md-2 control-label">Main Category</label>
 
                     <div class="col-md-9">
-                        <select class="form-control" name="main_category_id">
+                        <select id="ctr_parent_id" class="form-control" name="main_category_id">
                             <option value=""></option>
                             @foreach($cat as $c)
                                 <option value="{{ $c->id }}">{{ $c->title }}</option>
@@ -53,11 +53,13 @@
                     <label class="col-md-2 control-label">Sub Category</label>
 
                     <div class="col-md-9">
-                        <select class="form-control" name="sub_category_id">
-                            <option value="0"></option>
+                        <select id="ctr_sub_id" class="form-control" name="sub_category_id">
+                            <option value=""></option>
+                            {{-- 
                             @foreach($subcat as $sc)
                                 <option value="{{ $sc->id }}">{{ $sc->title }}</option>
                             @endforeach
+                            --}}
                         </select>
                     </div>
                 </div>
@@ -173,11 +175,14 @@
 		</div>
 		
 	</div>
+    <input type="hidden" id="ctr_tocken" value="{{ csrf_token() }}" /> 
 </div>
 
 @endsection
 
 @section('scripts')
 @parent
-<!-- your custom script here -->
+
+<script type="text/javascript" src="{{ asset('js/getsubfrommain.js') }}"></script>
+
 @endsection

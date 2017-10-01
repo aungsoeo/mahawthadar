@@ -64,6 +64,10 @@ Route::group(['prefix' => 'admin'], function(){
 
 		Route::post('/user/search',array('as'=>'admin.user.search','uses'=>'UserController@search'));
 
+		Route::get('/post/search',array('as'=>'admin.post.search','uses'=>'PostController@search'));
+
+		Route::post('/post/getsub', array('as'=>'admin.post.getsub','uses'=>'PostController@getsub'));
+
 	});
 });
 /*******/
