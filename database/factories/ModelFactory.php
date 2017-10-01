@@ -20,6 +20,7 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'email' => $faker->unique()->safeEmail,
         'password' => $password ?: $password = bcrypt('secret'),
         'remember_token' => str_random(10),
+        'role'=>'0',
     ];
 });
 
@@ -40,5 +41,27 @@ $factory->define(App\Model\Post::class, function (Faker\Generator $faker) {
 		'custom_field3'=>$faker->sentence(), 
 		'custom_field4'=>$faker->sentence(), 
 		'custom_field5'=>$faker->sentence(),
+    ];
+});
+
+$factory->define(App\Contact::class, function (Faker\Generator $faker) {
+    return [
+        'name' => $faker->name,
+        'email' => $faker->unique()->safeEmail,
+        'comment' =>$faker->sentence(),
+    ];
+});
+
+$factory->define(App\Student::class, function (Faker\Generator $faker) {
+    return [
+        'name' => $faker->name,
+        'father_name'=>$faker->name,
+        'father_nrc'=>'9/PaMaNa(N)123456',
+        'email' => $faker->unique()->safeEmail,
+        'address' =>$faker->address,
+        'phone_no' => $faker->phoneNumber,
+        'gender' => 'male',
+        'passed_school'=>$faker->name,
+        'roll_no'=>$faker->numberBetween(1,100),
     ];
 });
