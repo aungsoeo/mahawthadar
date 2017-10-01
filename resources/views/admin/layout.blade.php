@@ -283,14 +283,14 @@
         </li>
 
         <li class="">
-          <a href="contact" title="Contact"><i class="fa fa-support"></i> <span class="menu-item-parent">Contact</span></a>
+          <a href="{{ route('admin.contact') }}" title="Contact"><i class="fa fa-support"></i> <span class="menu-item-parent">Contact</span></a>
         </li>
 
         <li class="">
-          <a href="student" title="Students"><i class="fa fa-user"></i> <span class="menu-item-parent">Students</span></a>
+          <a href="{{ route('admin.student') }}" title="Students"><i class="fa fa-user"></i> <span class="menu-item-parent">Students</span></a>
         </li>
 
-        <li class="">
+        <li class="{{ route('admin.user') }}">
           <a href="user" title="User"><i class="fa fa-user"></i> <span class="menu-item-parent">User</span></a>
         </li> 
         
