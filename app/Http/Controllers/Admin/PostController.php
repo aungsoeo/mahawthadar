@@ -203,7 +203,11 @@ class PostController extends Controller
 
                 ->paginate(10);      
 
-        }
+        }else{
+
+           $posts= Post::paginate(10);
+
+         }
 
         return view('admin.post',compact('posts'));
      } 
