@@ -60,8 +60,6 @@ Route::group(['prefix' => 'admin'], function(){
 
 		Route::post('/user/{id}/update', ['as' => 'admin.user.update', 'uses' => 'UserController@update']);
 
-		Route::get('/user/{id}/show', ['as' => 'admin.user.show', 'uses' => 'UserController@show']);
-
 		Route::get('/user/{id}/delete', ['as' => 'admin.user.delete', 'uses' => 'UserController@delete']);
 
 		Route::post('/user/search',array('as'=>'admin.user.search','uses'=>'UserController@search'));
