@@ -71,7 +71,7 @@ class UserController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required',
             'role'=>'required',
-            'password' => 'required|string|min:6',
+            'password' => 'required|confirmed|min:6',
         ]);
         if ($validator->fails()) {
             return redirect()->back()
