@@ -22,3 +22,23 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'remember_token' => str_random(10),
     ];
 });
+
+// open in terminal and run php artisan tinker and run
+//->>factory(App\Model\Post::class,100)->create();
+
+$factory->define(App\Model\Post::class, function (Faker\Generator $faker) {
+    return [
+        'title' => $faker->sentence(),
+        'main_category_id'=>$faker->numberBetween(1,10),
+        'sub_category_id'=>$faker->numberBetween(1,20),
+        'short_description'=>$faker->sentence(),
+        'feature_photo' => 'http://loremflickr.com/400/300?random='.rand(1, 100),
+        'detail_photo'=>'http://loremflickr.com/400/300?random='.rand(1, 100),
+        'detail_description' => $faker->paragraph(2),
+		'custom_field1'=>$faker->sentence(), 
+		'custom_field2'=>$faker->sentence(), 
+		'custom_field3'=>$faker->sentence(), 
+		'custom_field4'=>$faker->sentence(), 
+		'custom_field5'=>$faker->sentence(),
+    ];
+});
