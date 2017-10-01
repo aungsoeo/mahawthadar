@@ -29,7 +29,7 @@ class UserController extends Controller
     {
         $users= User::paginate(10);
         return view('admin.user',['users'=>$users]);
-     }  
+    }  
 
     public function create()
     {
@@ -37,18 +37,19 @@ class UserController extends Controller
     }
 
     public function store(Request $request)
-    {   
+    {  
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'role'=>'required',
-            'password' => 'required|string|min:6',
+           'password' => 'required|confirmed|min:6',
         ]);
         if ($validator->fails()) {
             return redirect()->back()
               ->withInput()
               ->withErrors($validator); 
         }
+
         $arr=[
                 'name' => $request->name,
                 'email' => $request->email,
