@@ -11,7 +11,8 @@ class HistoryController extends Controller
     public function index()
     {	
     	$posts= Post::where('main_category_id',1)->paginate(3);
-        return view('history',compact('posts'));
+        $founders= Post::where('main_category_id',1)->where('sub_category_id',3)->paginate(3);
+        return view('history',['posts'=>$posts, 'founders'=>$founders]);
     }
 
     // show post in history by id

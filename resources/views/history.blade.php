@@ -52,31 +52,17 @@
       <h2 class="title">တည္ေထာင္အုပ္ခ်ဳပ္သူမ်ား (Founders)</h2>
       <div id="portfolio">
         <ul class="nospace clear">
-          <li class="one_half first">
-            <article><img class="borderedbox" src="images/demo/portfolio/8.jpeg" alt="">
-              <h2>ဥကၠဌ</h2>
-              <p>Orciinterdum condimenterdum nullamcorper elit nam curabitur laoreet met praesenean et iaculum. Metridiculis conseque quis iaculum aenean nunc aenean quis nam nis dui.</p>
+          <?php $i=1; ?>
+          @foreach($founders as $post)
+          <li class="one_half {{ ($i%2!=0)? 'first' : '' }}">
+            <article><img class="borderedbox" src="{{ asset('upload/posts/' . $post->feature_photo) }}" alt="">
+              <h2>{{$post->title}}</h2>
+              <p>{{$post->short_description}}</p>
               <!-- <p class="right"><a href="#">Read More Here &raquo;</a></p> -->
-            </article>
+            </article>            
           </li>
-          <li class="one_half">
-            <article><img class="borderedbox" src="images/demo/portfolio/6.jpeg" alt="">
-              <h2>နာယက</h2>
-              <p>Orciinterdum condimenterdum nullamcorper elit nam curabitur laoreet met praesenean et iaculum. Metridiculis conseque quis iaculum aenean nunc aenean quis nam nis dui.</p>
-            </article>
-          </li>
-          <li class="one_half first">
-            <article><img class="borderedbox" src="images/demo/portfolio/9.jpeg" alt="">
-              <h2>ေက်ာင္းအုပ္ၾကီး</h2>
-              <p>Orciinterdum condimenterdum nullamcorper elit nam curabitur laoreet met praesenean et iaculum. Metridiculis conseque quis iaculum aenean nunc aenean quis nam nis dui.</p>
-            </article>
-          </li>
-          <li class="one_half">
-            <article><img class="borderedbox" src="images/demo/portfolio/1.png" alt="">
-              <h2>Metridiculis conseque quis</h2>
-              <p>Orciinterdum condimenterdum nullamcorper elit nam curabitur laoreet met praesenean et iaculum. Metridiculis conseque quis iaculum aenean nunc aenean quis nam nis dui.</p>
-            </article>
-          </li>
+          <?php $i++; ?>
+          @endforeach
         </ul>
         </div>
       </div> 

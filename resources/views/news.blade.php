@@ -34,14 +34,15 @@
     </div>  
   <!-- ################################################################################################ -->  
     <div class="one_quarter sidebar"> 
-    <h6>Campus Life</h6>
+    <h6>News Category</h6>
         <nav class="sdb_holder">
           <ul>
-            <li><a href="news.php">News Activity</a></li>
-            <li><a href="news.php">Student Life</a></li>
-            <li><a href="news.php">Sports</a></li>
-            <li><a href="news.php">Health Care</a></li>
-            <li><a href="news.php">Food</a></li>
+            <?php
+            $page = (isset($_GET['page']))? $_GET['page'] : '';
+            ?>
+            @foreach($subcategory as $s)
+              <li><a href="{{ route('news.index') }}?sub={{ $s->id }}">{{ $s->title }}</a></li>
+            @endforeach
           </ul>
         </nav>
     </div>
@@ -49,7 +50,11 @@
     </main>
   </div>
 </div> 
-{{$posts->render()}}
+<?php
+$subcategory_id = (isset($_GET['sub']))? $_GET['sub'] : '';
+?>
+{!! $posts->appends(['sub'=>$subcategory_id])->render() !!}
+<br>
 <!-- ################################################################################################ -->
 @endsection
 

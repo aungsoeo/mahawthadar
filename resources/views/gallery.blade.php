@@ -18,7 +18,7 @@
           <h2>Latest Images From The University</h2>
           <ul class="nospace clear">
             @foreach($posts as $post)
-            <li class="one_quarter"><a class="nlb" data-lightbox-gallery="gallery1" href="{{ asset('upload/posts/'.$post->feature_photo) }}" title="Display Text 4"><img class="borderedbox" src="{{ asset('upload/posts/'.$post->feature_photo) }}" alt=""></a></li>
+            <li class="one_quarter"><a class="nlb" data-lightbox-gallery="gallery1" href="{{ asset('upload/posts/'.$post->feature_photo) }}" title="{{ $post->title }}"><img class="borderedbox" src="{{ asset('upload/posts/'.$post->feature_photo) }}" alt=""></a></li>
             @endforeach
             <!-- <li class="one_quarter first"><a class="nlb" data-lightbox-gallery="gallery1" href="images/demo/gallery/1.jpeg" title="Display Text 1"><img class="borderedbox" src="images/demo/gallery/1.jpeg" alt=""></a></li>
             <li class="one_quarter"><a class="nlb" data-lightbox-gallery="gallery1" href="../images/demo/gallery/2.png" title="Display Text 2"><img class="borderedbox" src="images/demo/gallery/2.jpeg" alt=""></a></li>
@@ -46,14 +46,15 @@
     </div>  
   <!-- ################################################################################################ -->  
     <div class="one_quarter sidebar"> 
-    <h6>Campus Life</h6>
+    <h6>Gallery Group</h6>
         <nav class="sdb_holder">
           <ul>
-            <li><a href="news.php">News Activity</a></li>
-            <li><a href="news.php">Student Life</a></li>
-            <li><a href="news.php">Sports</a></li>
-            <li><a href="news.php">Health Care</a></li>
-            <li><a href="news.php">Food</a></li>
+          <?php
+          $page = (isset($_GET['page']))? $_GET['page'] : '';
+          ?>
+          @foreach($subcategory as $s)
+            <li><a href="{{ route('gallery.index') }}?sub={{ $s->id }}">{{ $s->title }}</a></li>
+          @endforeach
           </ul>
         </nav>
     </div>
@@ -80,6 +81,12 @@
     </main>
   </div>
 </div> 
+<?php
+$subcategory_id = (isset($_GET['sub']))? $_GET['sub'] : '';
+?>
+{!! $posts->appends(['sub'=>$subcategory_id])->render() !!}
+<br>
+
 <!-- ################################################################################################ -->
 @endsection
 
