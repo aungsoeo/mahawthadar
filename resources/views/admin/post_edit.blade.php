@@ -171,7 +171,7 @@
                     <div class="col-md-6 col-md-offset-6">
                         <br>
                         <button type="submit" class="btn btn-primary">
-                            Add
+                            Update
                         </button>
                     </div>
                 </div>

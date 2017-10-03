@@ -13,8 +13,10 @@
     <main class="container clear"> 
 
      <div id="content" class="three_quarter first"> 
-        <h2>ဆရာ/ ဆရာမမ်ား (Teacher)</h2>
-          <font size="4px">(၈) တန္း ဆရာ/ ဆရာမမ်ား</font>
+       
+        <h2>Teachers</h2>
+         @foreach($subcat as $s)
+          <font size="4px">{{$s->title}}</font>
           <div class="scrollable">
           <table>
             <thead>
@@ -24,112 +26,17 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>Myanmar</td>
-                <td>Value 2</td>
-              </tr>
-              <tr>
-                <td>English</td>
-                <td>Value 6</td>
-              </tr>
-              <tr>
-                <td>Mathematics</td>
-                <td>Value 15</td>
-              </tr>
-              <tr>
-                <td>Geography</td>
-                <td>Value 10</td>
-              </tr>
-              <tr>
-                <td>History</td>
-                <td>Value 15</td>
-              </tr>
-              <tr>
-                <td>Science</td>
-                <td>Value 15</td>
-              </tr>
+                @foreach($subcat[0]->post as $t)
+                <tr>
+                  <td>{{$t->title}}</td>
+                  <td>{{$t->custom_field1}}</td>
+                </tr>
+                @endforeach
             </tbody>
           </table>
-        </div>
-
-        <br>
-        <font size="4px">(၉) တန္း ဆရာ/ ဆရာမမ်ား</font>
-          <div class="scrollable">
-          <table>
-            <thead>
-              <tr>
-                <th>Subjects</th>
-                <th>Teachers</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Myanmar</td>
-                <td>Value 2</td>
-              </tr>
-              <tr>
-                <td>English</td>
-                <td>Value 6</td>
-              </tr>
-              <tr>
-                <td>Mathematics</td>
-                <td>Value 10</td>
-              </tr>
-              <tr>
-                <td>Chemistry</td>
-                <td>Value 15</td>
-              </tr>
-              <tr>
-                <td>Physics</td>
-                <td>Value 15</td>
-              </tr>
-              <tr>
-                <td>Biology</td>
-                <td>Value 15</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-
-        <br>
-        <font size="4px">(၁၀) တန္း ဆရာ/ ဆရာမမ်ား</font>
-          <div class="scrollable">
-          <table>
-            <thead>
-              <tr>
-                <th>Subjects</th>
-                <th>Teachers</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Myanmar</td>
-                <td>Value 2</td>
-              </tr>
-              <tr>
-                <td>English</td>
-                <td>Value 6</td>
-              </tr>
-              <tr>
-                <td>Mathematics</td>
-                <td>Value 10</td>
-              </tr>
-              <tr>
-                <td>Chemistry</td>
-                <td>Value 15</td>
-              </tr>
-              <tr>
-                <td>Physics</td>
-                <td>Value 15</td>
-              </tr>
-              <tr>
-                <td>Biology</td>
-                <td>Value 15</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      
+          </div>
+          <br>      
+        @endforeach
     </div>  
   <!-- ################################################################################################ -->  
     <div class="one_quarter sidebar"> 
@@ -144,25 +51,6 @@
           </ul>
         </nav>
     </div>
-      <!-- ################################################################################################ -->
-      <!-- <nav class="pagination">
-        <ul>
-          <li><a href="#">&laquo; Previous</a></li>
-          <li><a href="#">1</a></li>
-          <li><a href="#">2</a></li>
-          <li><strong>&hellip;</strong></li>
-          <li><a href="#">6</a></li>
-          <li class="current"><strong>7</strong></li>
-          <li><a href="#">8</a></li>
-          <li><a href="#">9</a></li>
-          <li><strong>&hellip;</strong></li>
-          <li><a href="#">14</a></li>
-          <li><a href="#">15</a></li>
-          <li><a href="#">Next &raquo;</a></li>
-        </ul>
-      </nav> -->
-      <!-- ################################################################################################ --> 
-      <!-- / main body -->
       <div class="clear"></div>
     </main>
   </div>
@@ -173,4 +61,5 @@
 @section('scripts')
 @parent
 <!-- your custom script here -->
+<script type="text/javascript" src="{{ asset('js/getsubfrommain.js') }}"></script>
 @endsection

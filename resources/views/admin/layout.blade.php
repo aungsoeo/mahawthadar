@@ -293,7 +293,14 @@
         <li class="{{ route('admin.user') }}">
           <a href="user" title="User"><i class="fa fa-user"></i> <span class="menu-item-parent">User</span></a>
         </li> 
+
+        <li class="">
+          <a href="{{ route('admin.teacher') }}" title="Teacher"><i class="fa fa-user"></i> <span class="menu-item-parent">Teacher</span></a>
+        </li> 
         
+        <li class="">
+          <a href="{{ route('admin.timetable') }}" title="TimeTable"><i class="fa fa-user"></i> <span class="menu-item-parent">TimeTable</span></a>
+        </li> 
       </ul>
     </nav>
     <span class="minifyme" data-action="minifyMenu"> 
