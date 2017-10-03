@@ -22,7 +22,8 @@ class StaffController extends Controller
     }
 
     public function timetable()
-    {
-        return view('timetable');
+    {   
+        $subcat=Category::where('parent_id','=','15')->with('post')->get();
+        return view('timetable',compact('subcat'));
     }
 }
