@@ -27,7 +27,8 @@ $sub_category_id = (isset($_GET['sub_category_id']))? $_GET['sub_category_id'] :
 
 
 		<div class="row">
-			<form action="{{ route('admin.post.search') }}" method="GET" role="form">
+			<form action="{{ route('admin.teacher.search') }}" method="POST" role="form">
+				  {!! csrf_field() !!}
 				<div class="form-group col-md-3">
 				    <div class="input-group">
 				        <input type="text" class="form-control" name="search"

@@ -27,6 +27,12 @@ $sub_category_id = (isset($_GET['sub_category_id']))? $_GET['sub_category_id'] :
 
 
 		<div class="row">
+						 <!-- for success message -->
+            @if ($message = Session::get('success'))
+              <div class="alert alert-success">
+                  <p>{{ $message }}</p>
+              </div>
+             @endif
 			<form action="{{ route('admin.timetable.search') }}" method="GET" role="form">
 				<div class="form-group col-md-3">
 				    <div class="input-group">
@@ -38,11 +44,18 @@ $sub_category_id = (isset($_GET['sub_category_id']))? $_GET['sub_category_id'] :
 				<div class="form-group col-md-3">
 			    	<select id="ctr_parent_id" class="form-control" name="category_id">
                         <option value="">Select Category</option>
+                        @foreach($cat as $key=>$value)
+                            <option {{ ($category_id==$key) ? 'selected' : '' }} value="{{ $key }}">{{ $value }}</option>
+                        @endforeach
                     </select>
                 </div>
                 <div class="form-group col-md-3">
                 	<select id="ctr_sub_id" class="form-control" name="sub_category_id">
                         <option value="">Select Sub Category</option>
+                        @foreach($subcat as $sc)
+                            <option {{ (isset($sub_category_id))? ($sub_category_id==$sc->id)? 'selected' : '' : '' }} value="{{ $sc->id }}">{{ $sc->title }}
+                            </option>
+                        @endforeach
                     </select>
                 </div>
                 <div class="form-group col-md-3">
@@ -53,29 +66,24 @@ $sub_category_id = (isset($_GET['sub_category_id']))? $_GET['sub_category_id'] :
 			<div class="col-md-6">
 								
 			</div>
-			 <!-- for success message -->
-            @if ($message = Session::get('success'))
-              <div class="alert alert-success">
-                  <p>{{ $message }}</p>
-              </div>
-             @endif
 			<table class="table table-striped table-bordered table-hover"> 
 				<thead>
 					<tr>
-						<td width="40px;">ID</td>
 						<td>Day</td>
 						<td>1</td>
 						<td>2</td>
 						<td>3</td>
 						<td>4</td>
 						<td>5</td>
+						<td>
+							<input type="submit" class="btn btn-xs btn-default" onclick="window.location.href='{{ route('admin.timetable.create') }}'" value="Add New" >
+						</td>
 
 					</tr>					
 				</thead>
 				<tbody>
 					@foreach($timetable as $t)			
 					<tr>
-						<td>{{$t->id}}</td>
 						<td>
 							{{$t->title}}
 						</td>
@@ -83,7 +91,11 @@ $sub_category_id = (isset($_GET['sub_category_id']))? $_GET['sub_category_id'] :
 						<td>{{$t->custom_field2}}</td>
 						<td>{{$t->custom_field3}}</td>
 						<td>{{$t->custom_field4}}</td>
-						<td>{{$t->custom_field5}}</td>					
+						<td>{{$t->custom_field5}}</td>
+						<td>
+							<input type="submit" class="btn btn-primary" onclick="window.location.href='{{ route('admin.timetable.edit',$t->id) }}'" value="Edit">
+							<input type="submit" class="btn btn-danger" onclick="window.location.href='{{ route('admin.timetable.delete',$t->id)}}'" value="Delete">
+						</td>					
 
 					</tr>
 					@endforeach

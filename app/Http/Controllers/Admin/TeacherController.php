@@ -11,11 +11,6 @@ use Validator;
 
 class TeacherController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
     public function __construct()
     {
         //$this->middleware('auth');
@@ -133,29 +128,25 @@ class TeacherController extends Controller
 
     public function search(Request $request)
     {   
-        $input = $request->all();
-        $posts = new Post(); // for_ASO to check fixes this is more better in filter
-        
         $subcat = array();
+        $teachers= new Post();
 
-        if($request->get('search')){
-            $posts = $posts->where("title", "LIKE", "%{$request->get('search')}%");
+        if ($request->get('search')) {
+             $teachers= $teachers->where("title", "LIKE", "%{$request->get('search')}%");
         }
 
         if($request->get('category_id')){
-            $posts = $posts->where("main_category_id", "=", $request->get('category_id'));
+            $teachers = $teachers->where("main_category_id", "=", $request->get('category_id'));
             $subcat = Category::where('parent_id','=', $request->get('category_id'))->get();
         }
-        
-        if($request->get('sub_category_id')){
-            $posts = $posts->where("sub_category_id", "=", $request->get('sub_category_id'));
-        }
+       
 
         $sub_category_id = ($request->get('sub_category_id'))? $sub_category_id = $request->get('sub_category_id') : '';
 
-        $posts = $posts->orderby('updated_at', 'desc');
-        $posts = $posts->paginate(10);
+        $teachers = $teachers->orderby('updated_at', 'desc');
+        // dd($teachers);
+        $teachers = $teachers->paginate(10);
         $cat = Category::where('parent_id','=', '0')->pluck('title', 'id');
-        return view('admin.post', ['posts'=>$posts, 'cat'=>$cat, 'subcat' => $subcat, 'sub_category_id' => $sub_category_id]);
+        return view('admin.teacher', ['teachers'=>$teachers, 'cat'=>$cat, 'subcat' => $subcat, 'sub_category_id' => $sub_category_id]);
      } 
 }

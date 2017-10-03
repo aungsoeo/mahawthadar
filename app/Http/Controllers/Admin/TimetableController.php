@@ -79,21 +79,24 @@ class TimetableController extends Controller
 
     public function edit($id)
     {   
-        $teacher = Post::find($id);
+        $timetable = Post::find($id);
         $cat = Category::where('parent_id', '0')->orderBy('parent_id', 'asc')->get();
         $subcat = Category::where('parent_id','!=', '0')->orderBy('parent_id', 'asc')->get();
-        return view('admin.teacher_edit',compact('teacher','cat','subcat'));
+        return view('admin.timetable_edit',compact('timetable','cat','subcat'));
     }
 
     //store update post
     public function update($id, Request $request)
     {   
-        // $post= Post::findOrFail($id);
-
         $validator = Validator::make($request->all(), [
             'title' => 'required',
             'main_category_id' => 'required',
             'custom_field1' => 'required',
+            'custom_field2' => 'required',
+            'custom_field3' => 'required',
+            'custom_field4' => 'required',
+            'custom_field5' => 'required',
+
         ]);
 
         if ($validator->fails()) {
@@ -101,7 +104,7 @@ class TimetableController extends Controller
               ->withInput()
               ->withErrors($validator); 
         }
-
+        // dd($request->all());
         $arr=[  
                 'id'=>$id,
                 'title' => $request->title,
@@ -112,23 +115,24 @@ class TimetableController extends Controller
                 'detail_description' => '',
                 'detail_photo' => '',
                 'custom_field1' =>$request->custom_field1, 
-                'custom_field2' => '',
-                'custom_field3' => '',
-                'custom_field4' => '',
-                'custom_field5' => '',
+                'custom_field2' => $request->custom_field2,
+                'custom_field3' => $request->custom_field3,
+                'custom_field4' => $request->custom_field4,
+                'custom_field5' => $request->custom_field5,
             ];
+            // dd($arr);
         $teacher = Post::findOrFail($id);
         // $input = $request->all();
         $teacher->fill($arr)->save();
 
-        return redirect()->route('admin.teacher');
+        return redirect()->route('admin.timetable');
     }
 
     //delete  post
     public function delete($id)
     {
-      $teacher = Post::find($id)->delete();
-      return redirect()->back()->with('success','Teacher is successfully deleted!');
+      $timetable = Post::find($id)->delete();
+      return redirect()->back()->with('success','Timetable is successfully deleted!');
     }
 
     public function search(Request $request)
