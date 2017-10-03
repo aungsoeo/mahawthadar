@@ -68,6 +68,35 @@ Route::group(['prefix' => 'admin'], function(){
 
 		Route::post('/post/getsub', array('as'=>'admin.post.getsub','uses'=>'PostController@getsub'));
 
+		//route for teacher
+		Route::get('/teacher', ['as' => 'admin.teacher', 'uses' => 'TeacherController@index']);
+
+		Route::get('/teacher/create', ['as' => 'admin.teacher.create', 'uses' => 'TeacherController@create']);
+
+		Route::post('/teacher/create', ['as' => 'admin.teacher.store', 'uses' => 'TeacherController@store']);
+		// add route for post update by ASO
+		Route::get('/teacher/{id}/edit', ['as' => 'admin.teacher.edit', 'uses' => 'TeacherController@edit']);
+
+		Route::post('/teacher/{id}/update', ['as' => 'admin.teacher.update', 'uses' => 'TeacherController@update']);
+
+		Route::get('/teacher/{id}/delete', ['as' => 'admin.teacher.delete', 'uses' => 'TeacherController@delete']);
+
+		Route::post('/teacher/search',array('as'=>'admin.teacher.search','uses'=>'TeacherController@search'));
+
+		//route for timetable
+		Route::get('/timetable', ['as' => 'admin.timetable', 'uses' => 'TimetableController@index']);
+
+		Route::get('/timetable/create', ['as' => 'admin.timetable.create', 'uses' => 'TimetableController@create']);
+
+		Route::post('/timetable/create', ['as' => 'admin.timetable.store', 'uses' => 'TimetableController@store']);
+		// add route for post update by ASO
+		Route::get('/timetable/{id}/edit', ['as' => 'admin.timetable.edit', 'uses' => 'TimetableController@edit']);
+
+		Route::post('/timetable/{id}/update', ['as' => 'admin.timetable.update', 'uses' => 'TimetableController@update']);
+
+		Route::get('/timetable/{id}/delete', ['as' => 'admin.timetable.delete', 'uses' => 'TimetableController@delete']);
+
+		Route::post('/timetable/search',array('as'=>'admin.timetable.search','uses'=>'TimetableController@search'));
 	});
 });
 /*******/
