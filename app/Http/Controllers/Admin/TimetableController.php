@@ -19,7 +19,7 @@ class TimetableController extends Controller
     public function index()
     {
         $cat = Category::where('parent_id','=', '0')->pluck('title', 'id');
-        $timetable= Post::Where('main_category_id','=','15')->orderby('updated_at', 'desc')->get();
+        $timetable= Post::Where('main_category_id','=','17')->orderby('updated_at', 'desc')->get();
         return view('admin.timetable',['timetable'=>$timetable, 'cat'=>$cat, 'subcat'=>array()]);
     }  
 
@@ -160,6 +160,6 @@ class TimetableController extends Controller
         $posts = $posts->orderby('updated_at', 'desc');
         $posts = $posts->paginate(10);
         $cat = Category::where('parent_id','=', '0')->pluck('title', 'id');
-        return view('admin.post', ['posts'=>$posts, 'cat'=>$cat, 'subcat' => $subcat, 'sub_category_id' => $sub_category_id]);
+        return view('admin.timetable', ['timetable'=>$posts, 'cat'=>$cat, 'subcat' => $subcat, 'sub_category_id' => $sub_category_id]);
      } 
 }

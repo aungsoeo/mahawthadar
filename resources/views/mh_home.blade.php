@@ -27,9 +27,12 @@
           <!-- Left Column -->
           <div class="one_quarter first"> 
             <ul class="nospace">
-              <li class="btmspace-15"><em class="heading">တည္ေထာင္အုပ္ခ်ဳပ္သူမ်ား</em><a href="history.php"><p>ဥကၠဌ >></p><br><img class="borderedbox" src="images/demo/8.jpeg" alt=""></a></li>
-              <li class="btmspace-15"><a href="history.php"><p>နာယက >></p><br><img class="borderedbox" src="images/demo/6.jpeg" alt=""></a></li>
-              <li class="btmspace-15"><a href="history.php"><p>ေက်ာင္းအုပ္ၾကီး >></p><br> <img class="borderedbox" src="images/demo/9.jpeg" alt=""></a></li>
+              <li class="btmspace-15"><em class="heading">တည္ေထာင္အုပ္ခ်ဳပ္သူမ်ား</em></li>
+              @foreach($founders as $f)
+              <li class="btmspace-15">
+                <a href="{{ route('history.show',$f->id) }}"><p>{{ $f->title }} >></p><br><img class="borderedbox" src="{{ asset('upload/posts/'.$f->feature_photo) }}" alt=""></a>
+              </li>
+              @endforeach
               <!-- <li><a href="#"><em class="heading">Alumni</em> <img class="borderedbox" src="images/demo/220x95.gif" alt=""></a></li> -->
             </ul>
           </div>
@@ -55,20 +58,16 @@
             </li>
           </ul>
           <p class="right"><a href="#">Click here to view all of the latest news and events &raquo;</a></p> -->
-          <h2>မေဟာ္သဓာ ကိုယ္ပုိင္အထက္တန္းေက်ာင္း</h2>
-          <div class="imgholder"><img src="images/demo/10.jpeg" alt="" /></div><br>
-          <p><center>"ေပ်ာ္ေအာင္လည္းေန ေတာ္ေအာင္လည္းၾကိဳးစား မေဟာ္သဓာေက်ာင္းသား"</center></p>
-          <p>You can use and modify the template for both personal and commercial use. You must keep all copyright information and credit links in the template and associated files. For more CSS templates visit <a href="http://www.os-templates.com/">Free Website Templates</a>.</p>
-          <br>
-          <h2 class="title">၈ - ၉ - ၁၀ သင္တန္းမ်ားလက္ခံသင္ၾကားေပးပါသည္</h2>
-          <p>Etiam euismod porttitor diam, eget tristique lacus eleifend tincidunt. In hac habitasse platea dictumst.</p>
-          <ul>
-            <li>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</li>
-            <li>Donec at nunc nec lectus viverra pretium sit amet a orci.</li>
-            <li>Praesent ac felis non magna accumsan accumsan.</li>
-            <li>Vivamus non est nunc, non pulvinar libero.</li>
-          </ul>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum et sapien id quam sodales tincidunt. Cras facilisis mi eu nibh ultricies sed malesuada metus varius.</p>
+          @foreach($about as $ab)
+            <h2>{{ $ab->title }}</h2>
+            @if($ab->feature_photo!="")
+              <div class="imgholder"><img src="{{ asset('upload/posts/'.$ab->feature_photo) }}" alt="" /></div><br>
+            @endif
+            <p>
+              {{ $ab->detail_description }}
+            </p>
+            <br>
+          @endforeach
           <!-- ################################################################################################ --> 
         </div>
         <!-- / Middle Column --> 
@@ -86,21 +85,15 @@
         <p>Nuncsed sed conseque a at quismodo tris mauristibus sed habiturpiscinia sed. Condimentumsantincidunt dui mattis magna intesque purus orci augue lor nibh.</p>
         <p class="readmore"><a href="#">Continue Reading &raquo;</a></p>
       </div> -->
-      <h6>Campus Life</h6>
-      <nav class="sdb_holder">
-        <ul>
-          <li><a href="news.php">News Activity</a></li>
-          <li><a href="news.php">Student Life</a></li>
-          <li><a href="news.php">Sports</a></li>
-          <li><a href="news.php">Health Care</a></li>
-          <li><a href="news.php">Food</a></li>
-        </ul>
-      </nav>
+
+      {!! MyFuncs::getNewsSideBar(); !!}
+      
       <div class="sdb_holder">
         <h6>Latest News &amp; Events</h6>
         <ul class="nospace quickinfo">
-          <li class="clear"><a href="news.php"><img src="images/demo/80x80.gif" alt=""> Make An Application</a></li>
-          <li class="clear"><a href="news.php"><img src="images/demo/80x80.gif" alt=""> Order A Prospectus</a></li>
+          @foreach($news as $n)
+          <li class="clear"><a href="{{ route('news.show', $n->id) }}"><img src="{{ asset('upload/posts/'.$n->feature_photo) }}" alt=""> {{ substr($n->title, 0, 15) }} </a></li>
+          @endforeach
         </ul>
       </div>
       <!-- ################################################################################################ --> 
@@ -112,13 +105,19 @@
 </main>
 </div>
 </div>
-
+<?php
+$sliderarr = array();
+foreach($slider as $s){
+  array_push($sliderarr, asset('upload/posts/'.$s->feature_photo));
+}
+?>
 @endsection
 
 @section('scripts')
 @parent
 <script>
-  ImageArray = new Array("{{ asset('images/demo/slider/1.jpeg') }}","{{ asset('images/demo/slider/2.jpeg') }}","{{ asset('images/demo/slider/3.jpeg') }}","{{ asset('images/demo/slider/4.jpeg') }}","{{ asset('images/demo/slider/5.jpeg') }}");
+  ImageArray = <?php echo json_encode($sliderarr); ?>;
+  console.log(ImageArray);
 </script>
 <script src="{{ asset('layout/scripts/slider.js') }}"></script> 
 @endsection

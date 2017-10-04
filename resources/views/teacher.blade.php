@@ -26,7 +26,7 @@
               </tr>
             </thead>
             <tbody>
-                @foreach($subcat[0]->post as $t)
+                @foreach($s->post as $t)
                 <tr>
                   <td>{{$t->title}}</td>
                   <td>{{$t->custom_field1}}</td>
@@ -40,16 +40,7 @@
     </div>  
   <!-- ################################################################################################ -->  
     <div class="one_quarter sidebar"> 
-    <h6>Campus Life</h6>
-        <nav class="sdb_holder">
-          <ul>
-            <li><a href="news.php">News Activity</a></li>
-            <li><a href="news.php">Student Life</a></li>
-            <li><a href="news.php">Sports</a></li>
-            <li><a href="news.php">Health Care</a></li>
-            <li><a href="news.php">Food</a></li>
-          </ul>
-        </nav>
+    {!! MyFuncs::getNewsSideBar(); !!}
     </div>
       <div class="clear"></div>
     </main>

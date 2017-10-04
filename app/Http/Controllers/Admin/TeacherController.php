@@ -19,7 +19,7 @@ class TeacherController extends Controller
     public function index()
     {
         $cat = Category::where('parent_id','=', '0')->pluck('title', 'id');
-        $teachers= Post::Where('main_category_id','=','14')->orderby('updated_at', 'desc')->paginate(10);
+        $teachers= Post::Where('main_category_id','=','16')->orderby('updated_at', 'desc')->paginate(10);
         return view('admin.teacher',['teachers'=>$teachers, 'cat'=>$cat, 'subcat'=>array()]);
     }  
 
@@ -140,8 +140,11 @@ class TeacherController extends Controller
             $subcat = Category::where('parent_id','=', $request->get('category_id'))->get();
         }
        
-
         $sub_category_id = ($request->get('sub_category_id'))? $sub_category_id = $request->get('sub_category_id') : '';
+
+        if($request->get('sub_category_id')){
+            $teachers = $teachers->where("sub_category_id", "=", $request->get('sub_category_id'));
+        }
 
         $teachers = $teachers->orderby('updated_at', 'desc');
         // dd($teachers);

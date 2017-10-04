@@ -82,7 +82,7 @@ Route::group(['prefix' => 'admin'], function(){
 
 		Route::get('/teacher/{id}/delete', ['as' => 'admin.teacher.delete', 'uses' => 'TeacherController@delete']);
 
-		Route::post('/teacher/search',array('as'=>'admin.teacher.search','uses'=>'TeacherController@search'));
+		Route::get('/teacher/search',array('as'=>'admin.teacher.search','uses'=>'TeacherController@search'));
 
 		//route for timetable
 		Route::get('/timetable', ['as' => 'admin.timetable', 'uses' => 'TimetableController@index']);
@@ -97,7 +97,7 @@ Route::group(['prefix' => 'admin'], function(){
 
 		Route::get('/timetable/{id}/delete', ['as' => 'admin.timetable.delete', 'uses' => 'TimetableController@delete']);
 
-		Route::post('/timetable/search',array('as'=>'admin.timetable.search','uses'=>'TimetableController@search'));
+		Route::get('/timetable/search',array('as'=>'admin.timetable.search','uses'=>'TimetableController@search'));
 	});
 });
 /*******/

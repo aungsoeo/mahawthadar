@@ -33,16 +33,7 @@
     </div>  
   <!-- ################################################################################################ -->
     <div class="one_quarter sidebar"> 
-    <h6>Campus Life</h6>
-        <nav class="sdb_holder">
-          <ul>
-            <li><a href="news.php">News Activity</a></li>
-            <li><a href="news.php">Student Life</a></li>
-            <li><a href="news.php">Sports</a></li>
-            <li><a href="news.php">Health Care</a></li>
-            <li><a href="news.php">Food</a></li>
-          </ul>
-        </nav>
+    {!! MyFuncs::getNewsSideBar(); !!}
     </div>
       <!-- main body --> 
       <!-- ################################################################################################ -->
@@ -56,7 +47,7 @@
           @foreach($founders as $post)
           <li class="one_half {{ ($i%2!=0)? 'first' : '' }}">
             <article><img class="borderedbox" src="{{ asset('upload/posts/' . $post->feature_photo) }}" alt="">
-              <h2>{{$post->title}}</h2>
+              <a href="{{ route('history.show',$post->id) }}"><h2>{{$post->title}}</h2></a>
               <p>{{$post->short_description}}</p>
               <!-- <p class="right"><a href="#">Read More Here &raquo;</a></p> -->
             </article>            

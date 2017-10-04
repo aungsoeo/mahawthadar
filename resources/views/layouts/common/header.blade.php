@@ -4,10 +4,10 @@
   <div id="topbar" class="clear"> 
     <nav>
       <ul>
-        <li><a href="index.php">Home</a></li>
+        <li><a href="{{ route('user.index') }}">Home</a></li>
         <!-- <li><a href="#">Contact Us</a></li> -->
-        <li><a href="register.php">ေက်ာင္း၀င္ခြင့္ပုံစံ</a></li>
-        <li><a href="login.php">Admin Login</a></li>
+        <li><a href="{{ route('book.index') }}">ေက်ာင္း၀င္ခြင့္ပုံစံ</a></li>
+        
       </ul>
     </nav>
   </div>
@@ -16,7 +16,7 @@
 <div class="wrapper row1">
   <header id="header" class="clear"> 
     <div id="logo" class="fl_left">
-    <h1>&nbsp;<img src="images/demo/logo.jpeg" width="10px" class="img11">&nbsp;&nbsp;&nbsp;&nbsp;<marquee width="700px" align="centre">ပညာေ၀ျဖာ မေဟာ္သဓာ အမ်ိဳးသားေရးအထက္တန္းေက်ာင္း</marquee>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="images/demo/logo.jpeg" width="10px" class="img11"></h1>
+    <h1>&nbsp;<img src="images/demo/logo.jpeg" width="10px" class="img11 ">&nbsp;&nbsp;&nbsp;&nbsp;<marquee width="700px" align="centre">ပညာေ၀ျဖာ မေဟာ္သဓာ အမ်ိဳးသားေရးအထက္တန္းေက်ာင္း</marquee>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="images/demo/logo.jpeg" width="10px" class="img11 ctr_logo1"></h1>
       <!-- <p>အမ်ိဳးသားေရးအထက္တန္းေက်ာင္း</p> --> 
     </div>
   </header>
