@@ -40,7 +40,9 @@
 						<br>
 						{!! MyFuncs::getCategory($c->Categories, 1); !!}
 						</td>
-						<td><input type="button" class="btn btn-xs btn-info" value="Edit"> <input type="button" class="btn btn-xs btn-danger" value="Delete"></td>
+						<td>
+							<input type="button" class="btn btn-xs btn-info" value="Edit"> 
+						</td>
 					</tr>						
 					@endforeach
 				</tbody>

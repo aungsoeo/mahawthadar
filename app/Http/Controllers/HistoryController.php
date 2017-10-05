@@ -10,7 +10,7 @@ class HistoryController extends Controller
     //show all post in history
     public function index()
     {	
-    	$posts= Post::where('main_category_id',1)->paginate(3);
+    	$posts= Post::where('main_category_id',1)->orderBy('created_at', 'desc')->paginate(3);
         $founders= Post::where('main_category_id',1)->where('sub_category_id',3)->paginate(3);
         return view('history',['posts'=>$posts, 'founders'=>$founders]);
     }

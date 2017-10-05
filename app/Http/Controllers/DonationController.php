@@ -13,7 +13,7 @@ class DonationController extends Controller
     //
     public function index()
     {   
-        $posts= Post::where('main_category_id',9)->paginate(3);
+        $posts= Post::where('main_category_id',9)->orderBy('created_at', 'desc')->paginate(3);
         return view('donation',compact('posts'));
     }
 

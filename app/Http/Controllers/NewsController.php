@@ -11,7 +11,7 @@ class NewsController extends Controller
     //
     public function index(Request $r)
     {	
-    	$posts= Post::where('main_category_id',2);
+    	$posts= Post::where('main_category_id',2)->orderBy('created_at', 'desc');
         $subcategory = Category::where('parent_id', 2)->get();
         if($r->get('sub')){
             $posts = $posts->where('sub_category_id',$r->get('sub'));
