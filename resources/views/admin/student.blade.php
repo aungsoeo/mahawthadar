@@ -3,6 +3,13 @@
 @section('styles')
 @parent
 <!-- your custom css here -->
+<style type="text/css">
+.alert-success{
+  display: block;
+  background: #efefef;
+  color: green;
+}
+</style>
 @endsection
 
 @section('content')
@@ -31,7 +38,12 @@
 				    </div>
 				</form>			
 			</div>
-			<div class="col-md-6">
+			<div class="col-md-6">		 <!-- for success message -->
+	        @if ($message = Session::get('success'))
+	          <div class="alert alert-success">
+	              <p>{{ $message }}</p>
+	          </div>
+	         @endif			
 								
 			</div>
 			<table class="table table-striped table-bordered table-hover"> 
@@ -47,6 +59,7 @@
 						<td>Phone NO</td>
 						<td>Email</td>
 						<td>Address</td>
+						<td>Action</td>
 					</tr>					
 				</thead>
 				<tbody>
@@ -62,6 +75,9 @@
 							<td>{{$s->phone_no}}</td>
 							<td>{{$s->email}} </td>
 							<td>{{$s->address}}</td>
+							<td>
+								<input type="submit" class="btn btn-xs btn-danger" onclick="window.location.href='{{ route('admin.student.delete',$s->id)}}'" value="Delete">
+							</td>
 						</tr>
 					@endforeach
 				</tbody>
@@ -76,4 +92,7 @@
 @section('scripts')
 @parent
 <!-- your custom script here -->
+<script>
+  $('.alert-success').fadeIn().delay(1000).fadeOut();
+</script>
 @endsection

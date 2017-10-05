@@ -29,5 +29,11 @@ class StudentController extends Controller
            $students= Student::paginate(10);
          }
         return view('admin.student',compact('students'));
-     } 
+    }
+    
+    public function delete($id)
+    {   
+        $contact = Student::find($id)->delete();
+      return redirect()->back()->with('success','Student is successfully deleted!');
+    }  
 }

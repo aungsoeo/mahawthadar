@@ -13,41 +13,55 @@
     <main class="container clear"> 
 
      <div id="content" class="three_quarter first"> 
-      <div id="comments">
-          <h2>{{$post->title}}</h2>
-          {{$post->short_description}}
-        <div class="clear"></div>
-        <br>
-        <div class="imgl borderedbox">
-            <img src="{{ asset('upload/posts/' . $post->feature_photo) }}" alt="" style="width: 220px; height: 220px;">
+        <div >
+          <h2 >{{$post->title}}</h2>
         </div>
-        <div class="clear"></div>    
-        <br>
-        <br>
-        <p>
-            {{$post->detail_description}}
-        </p>
-        <div class="imgl borderedbox">
-            <img src="{{ asset('upload/posts/' . $post->detail_photo) }}" alt="" style="width: 220px; height: 220px;">
+        <div>
+           <p>{{$post->short_description}}</p>
         </div>
-
         <br>
+        @if(file_exists( public_path() . '/upload/posts/' . $post->detail_photo)) 
+           <div>
+              <img src="{{ asset('upload/posts/' . $post->detail_photo) }}" alt="" >
+           </div>   
+        @else 
+            no photo 
+        @endif
+        <br>
+        <div >
+           <p>{{$post->detail_description}}</p>
+        </div>
+        <br> 
+        <div>
+          <p>
+            {{$post->custom_field1? $post->custom_field1: ''}}
+          </p>
+        </div> 
+        <br>
+        <div>
+          <p>{{$post->custom_field2? $post->custom_field2: ''}}</p>
+        </div>
+        <br>
+        <div>
+          <p>
+            {{$post->custom_field3? $post->custom_field3: ''}}
+          </p>
+        </div> 
+        <br>
+        <div>
+          <p>{{$post->custom_field4? $post->custom_field4: ''}}</p>
+        </div>
+        <br>
+        <div>
+          <p>
+            {{$post->custom_field5? $post->custom_field: ''}}
+          </p>
+        </div> 
 
-
-      </div>
     </div>  
   <!-- ################################################################################################ -->  
     <div class="one_quarter sidebar"> 
-    <h6>Campus Life</h6>
-        <nav class="sdb_holder">
-          <ul>
-            <li><a href="news.php">News Activity</a></li>
-            <li><a href="news.php">Student Life</a></li>
-            <li><a href="news.php">Sports</a></li>
-            <li><a href="news.php">Health Care</a></li>
-            <li><a href="news.php">Food</a></li>
-          </ul>
-        </nav>
+    {!! MyFuncs::getNewsSideBar(); !!}
     </div>
       <div class="clear"></div>
     </main>

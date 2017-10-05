@@ -29,5 +29,12 @@ class ContactController extends Controller
            $contacts= Contact::paginate(10);
          }
         return view('admin.contact',compact('contacts'));
-     } 
+    }
+
+    public function delete($id)
+    {   
+        $contact = Contact::find($id)->delete();
+      return redirect()->back()->with('success','Contact is successfully deleted!');
+    } 
+
 }

@@ -42,11 +42,15 @@ Route::group(['prefix' => 'admin'], function(){
 
 		Route::get('/contact', ['as' => 'admin.contact', 'uses' => 'ContactController@index']);
 
+		Route::get('/contact/{id}/delete', ['as' => 'admin.contact.delete', 'uses' => 'ContactController@delete']);
+
 		Route::post('/contact/search',array('as'=>'admin.contact.search','uses'=>'ContactController@search'));
 
 		Route::get('/student', ['as' => 'admin.student', 'uses' => 'StudentController@index']);
 
 		Route::post('/student/search',array('as'=>'admin.student.search','uses'=>'StudentController@search'));
+
+		Route::get('/student/delete/{id}', ['as' => 'admin.student.delete', 'uses' => 'StudentController@delete']);
 
 		//route for admin.user
 
