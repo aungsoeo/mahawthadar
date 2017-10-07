@@ -84,6 +84,9 @@ class DonationController extends Controller
             ];
 
             // dd($arr);
+            $date = explode('/', $arr['custom_field5']);
+            $arr['custom_field5'] = $date[2].'-'.$date[1].'-'.$date[0];
+
             $res=Post::create($arr);
 
             //tempory commit out
@@ -103,6 +106,12 @@ class DonationController extends Controller
     {
         $post = Post::findOrFail($id);
         return view('show_post',compact('post'));
+    }
+
+    public function calender()
+    {
+        $post = Post::getDatesForCalender();
+        return view('calender', compact('post'));
     }
 
 }

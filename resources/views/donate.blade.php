@@ -56,7 +56,7 @@
               </div>
           @endif
 
-          <form action="/donation/donate" method="post" enctype="multipart/form-data">
+          <form action="{{ route('donation.donate') }}" method="post" enctype="multipart/form-data">
             {{csrf_field()}}
             <div  class="form-group">
               <div class="label" id="name">
@@ -125,7 +125,7 @@
                 <label for="">Donation Date <span>*</span></label>
               </div>
               <div class="input-data" id="name">
-                <input class="form-control" id="date" name="date" placeholder="MM/DD/YYYY" type="text">
+                <input class="form-control" id="date" name="date" placeholder="DD/MM/YYYY" type="text">
               </div>
             </div>
 
@@ -170,7 +170,7 @@
 		var date_input=$('input[name="date"]'); //our date input has the name "date"
 		var container=$('.donate-form form').length>0 ? $('.donate-form form').parent() : "body";
 		date_input.datepicker({
-			format: 'mm/dd/yyyy',
+			format: 'dd/mm/yyyy',
 			container: container,
 			todayHighlight: true,
 			autoclose: true,

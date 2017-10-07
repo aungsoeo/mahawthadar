@@ -41,7 +41,7 @@
                   <p>{{ $message }}</p>
               </div>
              @endif
-          <form action="/contact" method="post">
+          <form action="{{ route('contact.postcontact') }}" method="post">
           {{csrf_field()}}
 
             <div>

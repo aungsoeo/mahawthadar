@@ -16,7 +16,7 @@
 <div class="wrapper row1">
   <header id="header" class="clear"> 
     <div id="logo" class="fl_left">
-    <h1>&nbsp;<img src="images/demo/logo.jpeg" width="10px" class="img11 ">&nbsp;&nbsp;&nbsp;&nbsp;<marquee width="700px" align="centre">ပညာေ၀ျဖာ မေဟာ္သဓာ အမ်ိဳးသားေရးအထက္တန္းေက်ာင္း</marquee>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="images/demo/logo.jpeg" width="10px" class="img11 ctr_logo1"></h1>
+    <h1>&nbsp;<img src="{{ asset('images/demo/logo.jpeg') }}" width="10px" class="img11 ">&nbsp;&nbsp;&nbsp;&nbsp;<marquee width="700px" align="centre">ပညာေ၀ျဖာ မေဟာ္သဓာ အမ်ိဳးသားေရးအထက္တန္းေက်ာင္း</marquee>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="{{ asset('images/demo/logo.jpeg') }}" width="10px" class="img11 ctr_logo1"></h1>
       <!-- <p>အမ်ိဳးသားေရးအထက္တန္းေက်ာင္း</p> --> 
     </div>
   </header>
@@ -33,8 +33,8 @@
         
         <li @if (Request::is('donation*')) class="active" @endif ><a href="{{ route('donation.index') }}" class="drop">Donations</a>
           <ul>
-            <li style="display:none"><a href="teacher.php">Donate</a></li>
             <li><a href="{{ route('donation.donate') }}">Donate</a></li>
+            <li><a href="{{ route('donation.calender') }}">See Calenders</a></li>
           </ul>
         </li>
 

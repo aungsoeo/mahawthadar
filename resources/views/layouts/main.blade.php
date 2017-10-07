@@ -10,6 +10,10 @@
 
     <title>{{ config('app.name', 'Mahawthadar') }}</title>
     
+
+    <link rel="shortcut icon" href="{{ asset('images/demo/logo.jpeg') }}" type="image/jpeg">
+    <link rel="icon" href="{{ asset('images/demo/logo.jpeg') }}" type="image/jpeg">
+    
     @section('styles')
     <link href="{{ asset('layout/styles/layout.css') }}" rel="stylesheet" type="text/css" media="all">
     @show    

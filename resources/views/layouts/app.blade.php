@@ -24,9 +24,9 @@
 
     <link rel="stylesheet" type="text/css" media="screen" href="{{ asset('assets/css/demo.min.css') }}">
 
-    <link rel="shortcut icon" href="{{ asset('assets/img/myimg/JNBK_logo.png') }}" type="image/png">
+<!--     <link rel="shortcut icon" href="{{ asset('assets/img/myimg/JNBK_logo.png') }}" type="image/png">
     <link rel="icon" href="{{ asset('assets/img/myimg/JNBK_logo.png.png') }}" type="image/png">
-
+ -->
     <script src="{{ asset('assets/jquery.min.js') }}"></script>
     <style>
     .navbar-default {

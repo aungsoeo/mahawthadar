@@ -2,11 +2,13 @@
 
 @section('styles')
 @parent
-<!-- your custom css here -->
+
+
 @endsection
 
 @section('content')
 <!-- ################################################################################################ -->
+
 <div class="nextfooter">
    <div class="wrapper row3">
   <div class="rounded">
@@ -45,16 +47,20 @@
   <!-- ################################################################################################ -->  
     <div class="one_quarter sidebar"> 
     {!! MyFuncs::getNewsSideBar(); !!}
+    <br>
+    <div id='calendar'></div>
     </div>
       <div class="clear"></div>
     </main>
   </div>
 </div> 
 {{$posts->render()}}
+<br>
 <!-- ################################################################################################ -->
 @endsection
 
 @section('scripts')
 @parent
-<!-- your custom script here -->
+
+
 @endsection

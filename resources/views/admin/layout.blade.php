@@ -24,10 +24,10 @@
     <link rel="stylesheet" type="text/css" media="screen" href="{{ asset('assets/css/smartadmin-rtl.min.css') }}">
 
     <link rel="stylesheet" type="text/css" media="screen" href="{{ asset('assets/css/demo.min.css') }}">
-
-    <!-- <link rel="shortcut icon" href="{{ asset('assets/img/myimg/JNBK_logo.png') }}" type="image/png">
-    <link rel="icon" href="{{ asset('assets/img/myimg/JNBK_logo.png.png') }}" type="image/png">
- -->
+    
+    <link rel="shortcut icon" href="{{ asset('images/demo/logo.jpeg') }}" type="image/jpeg">
+    <link rel="icon" href="{{ asset('images/demo/logo.jpeg') }}" type="image/jpeg">
+ 
     <script src="{{ asset('assets/jquery.min.js') }}"></script>
     <style>
     .navbar-default {
@@ -152,8 +152,12 @@
 
       <!-- logout button -->
       <div id="logout" class="btn-header transparent pull-right">
-        <span> <a href="Login/logout" title="Sign Out" data-action="userLogout" data-logout-msg="You can improve your security further after logging out by closing this opened browser"><i class="fa fa-sign-out"></i></a> </span>
+        <span> <a href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();"><i class="fa fa-sign-out"></i></a> </span>
       </div>
+      <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+          {{ csrf_field() }}
+      </form>
       <!-- end logout button -->
 
       <!-- search mobile button (this is hidden till mobile view port) -->
@@ -163,7 +167,7 @@
       <!-- end search mobile button -->
 
       <!-- input: search field -->
-      <form class="header-search pull-right">
+      <!-- <form class="header-search pull-right">
         <input id="search-fld" type="text" name="param" placeholder="Find reports and more" data-autocomplete='[
         "brands",
         "users",
@@ -177,7 +181,7 @@
           <i class="fa fa-search" ></i>
         </button>
         <a href="javascript:void(0);" id="cancel-search-js" title="Cancel Search"><i class="fa fa-times"></i></a>
-      </form>
+      </form> -->
       <!-- end input: search field -->
 
       <!-- fullscreen button -->
@@ -343,12 +347,12 @@
   <div class="page-footer">
     <div class="row">
       <div class="col-xs-12 col-sm-6">
-        <span class="txt-color-white">SmartAdmin 1.7.0 <span class="hidden-xs"> - Web Application Template</span> © 2014-2015</span>
+        <span class="txt-color-white">Mahawthadar <span class="hidden-xs"> - Administration Management System</span> © 2017-2018</span>
       </div>
 
       <div class="col-xs-6 col-sm-6 text-right hidden-xs">
         <div class="txt-color-white inline-block">
-          <i class="txt-color-blueLight hidden-mobile">Developed By Hein <strong>@ JNBK Corporation &nbsp;</strong> </i>
+          <i class="txt-color-blueLight hidden-mobile">Developed By <strong>5pro IT Solution &nbsp;</strong> </i>
           
         </div>
       </div>

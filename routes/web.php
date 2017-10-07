@@ -16,7 +16,7 @@ Route::group(['prefix' => 'admin'], function(){
 	Auth::routes();
 	Route::group(['namespace' => 'Admin', 'middleware' => 'IsAdmin'], function(){
 		//Route::get('/', 'HomeController@index')->name('Admin Home');
-		Route::get('/', ['as' => 'admin.index', 'uses' => 'HomeController@index']);
+		Route::get('/', ['as' => 'admin.index', 'uses' => 'CategoryController@index']);
 		
 		Route::get('/category', ['as' => 'admin.category', 'uses' => 'CategoryController@index']);
 
@@ -123,7 +123,7 @@ Route::get('/donation', ['as' => 'donation.index', 'uses' => 'DonationController
 Route::get('/donation/donate', ['as' => 'donation.donate', 'uses' => 'DonationController@donate']);
 Route::post('/donation/donate', ['as' => 'donation.donate', 'uses' => 'DonationController@postdonate']);
 Route::get('/donation/show/{id}', ['as' => 'donation.show', 'uses' => 'DonationController@show']);
-
+Route::get('/donation/calender', ['as' => 'donation.calender', 'uses' => 'DonationController@calender']); //line 122
 
 
 Route::get('/gallery', ['as' => 'gallery.index', 'uses' => 'GalleryController@index']);

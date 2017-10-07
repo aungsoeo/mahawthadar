@@ -18,4 +18,10 @@ class Post extends Model
 	public function SubCategory(){
 		return $this->belongsTo('App\Model\Category', 'sub_category_id');
 	}
+
+	public static function getDatesForCalender(){
+
+		$arr = self::select('title', 'custom_field5 AS start')->where('custom_field5', '>', date("Y-m-d"))->where('main_category_id',9)->get();
+		return $arr;
+	}
 }
